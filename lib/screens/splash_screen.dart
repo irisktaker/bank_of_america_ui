@@ -1,103 +1,95 @@
 import 'package:flutter/material.dart';
 import '/widgets/background_widget.dart';
 
-
 import 'login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
+  void gotToLoginScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: BackgroundWidget(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(flex: 5, child: Container()),
-                Image.asset(
-                  "assets/images/boa_logo.png",
-                  fit: BoxFit.cover,
+    return Scaffold(
+      body: BackgroundWidget(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(flex: 5, child: Container()),
+              Image.asset(
+                "assets/images/boa_logo.png",
+                fit: BoxFit.cover,
+              ),
+              Expanded(flex: 2, child: Container()),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  children: [
+                    splashBtn(
+                      context,
+                      text: "Sign in with your account",
+                      onPressed: () => gotToLoginScreen(context),
+                    ),
+                    const SizedBox(height: 20),
+                    splashBtn(
+                      context,
+                      text: "Open an Account",
+                      onPressed: () {},
+                      fillColor: const Color(0xFF083C6F),
+                      txtColor: const Color(0xFFFFFFFF),
+                    ),
+                  ],
                 ),
-                Expanded(flex: 2, child: Container()),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    children: [
-                      textFormField(
-                        text: "Sign in with your account",
-                        onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      textFormField(
-                        text: "Open an Account",
-                        onPressed: () {},
-                        fontColor: const Color(0xFFFFFFFF),
-                        fillColor: const Color(0xFF083C6F),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(flex: 5, child: Container()),
-              ],
-            ),
+              ),
+              Expanded(flex: 5, child: Container()),
+            ],
           ),
         ),
       ),
     );
   }
 
-  TextFormField textFormField({
+  Container splashBtn(
+    BuildContext context, {
     required String text,
-    Color fontColor = const Color(0xFF4DBEE0),
+    Color txtColor = const Color(0xFF4DBEE0),
     required void Function()? onPressed,
     Color fillColor = const Color(0xFFFFFFFF),
   }) {
-    return TextFormField(
-      textAlign: TextAlign.center,
-      decoration: InputDecoration(
-        hintText: text,
-        contentPadding: const EdgeInsets.symmetric(vertical: 20),
-        hintStyle: TextStyle(
-          color: fontColor,
-          fontWeight: FontWeight.w400,
-        ),
-        suffixIcon: IconButton(
-          onPressed: onPressed,
-          icon: Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-            color: fontColor,
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      decoration: BoxDecoration(
+        color: fillColor.withOpacity(0.65),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Row(
+        children: [
+          Expanded(flex: 2, child: Container()),
+          MaterialButton(
+            onPressed: onPressed,
+            child: Text(text),
+            height: 44,
+            textColor: txtColor,
           ),
-        ),
-        filled: true,
-        fillColor: fillColor.withOpacity(0.60),
-        border: InputBorder.none,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide.none,
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide.none,
-        ),
+          Expanded(child: Container()),
+          IconButton(
+            onPressed: onPressed,
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: txtColor,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-

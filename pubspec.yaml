@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  form_field_validator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,10 @@ flutter:
       fonts:
         - asset: assets/fonts/static/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-VariableFont_wght.ttf
+      
+    - family: Roboto_Condensed
+      fonts: 
+        - asset: assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf
 
   # fonts:
   #   - family: Schyler
