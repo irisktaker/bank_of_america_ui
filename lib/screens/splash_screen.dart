@@ -72,7 +72,7 @@ class SplashScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(flex: 2, child: Container()),
+          Expanded(child: Container()),
           MaterialButton(
             onPressed: onPressed,
             child: Text(text),

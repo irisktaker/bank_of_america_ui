@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:bank_of_america_ui/screens/dashboard.dart';
 import 'package:bank_of_america_ui/utils/constants.dart';
 
 import '/widgets/background_widget.dart';
@@ -161,7 +162,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       builder: (context) => const FingerPrint(),
                                     ),
                                   )
-                                : null;
+                                : Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DashBoardScreen(),
+                                    ),
+                                  );
                           },
                           height: 44,
                           shape: RoundedRectangleBorder(
