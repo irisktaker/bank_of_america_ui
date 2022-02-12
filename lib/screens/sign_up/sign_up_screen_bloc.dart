@@ -3,38 +3,18 @@ import 'package:flutter/material.dart';
 import '../dashboard/dashboard.dart';
 import '../fingerprint/fingerprint_screen.dart';
 
-class LoginScreenBloc {
+class SignUpScreenBloc {
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController bankIDController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confPasswordController = TextEditingController();
 
   bool? idCheck = false;
   bool? fingerprintCheck = false;
-
-  // String bankIdValidate(value) {
-  //   if (value!.isEmpty) {
-  //     return "Please enter your bank ID";
-  //   }
-  //   return '';
-  // }
-
-  // String passwordValidate(value) {
-  //   if (value!.isEmpty) {
-  //     return "Please enter your password";
-  //   }
-  //   if (value.length < 6) {
-  //     return "Password must be at least 6 characters long";
-  //   }
-  //   if (value.length > 20) {
-  //     return "Password must be less than 20 characters";
-  //   }
-  //   if (!value.contains(RegExp(r'[0-9]'))) {
-  //     return "Password must contain a number";
-  //   }
-
-  //   return '';
-  // }
 
   void singWithFingerPrint(BuildContext context) {
     fingerprintCheck == true

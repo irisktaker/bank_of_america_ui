@@ -7,17 +7,17 @@ import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/button/check_box.dart';
 import '../../widgets/button/custom_main_btn.dart';
 import '../../widgets/text_field/text_form_field.dart';
-import 'login_screen_bloc.dart';
+import 'sign_up_screen_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final LoginScreenBloc _bloc = LoginScreenBloc();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final SignUpScreenBloc _bloc = SignUpScreenBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Expanded(flex: 4, child: Container()),
                             Text(
-                              "Sign in",
+                              "Sign up",
                               style: TextStyle(
                                 fontSize: 24,
                                 color: Colors.grey[600],
@@ -87,14 +87,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 36),
                         CustomTextFormField(
-                          title: "PRO ID",
-                          fieldText: "Enter your bank ID",
-                          controller: _bloc.bankIDController,
+                          title: "Username",
+                          fieldText: "John lee",
+                          controller: _bloc.usernameController,
                           validator:
                               // _bloc.bankIdValidate,
-                              RequiredValidator(
-                                  errorText: "Please enter your Bank ID"),
-                          keyboardType: TextInputType.number,
+                              RequiredValidator(errorText: "Username required"),
+                          keyboardType: TextInputType.text,
+                          onFieldSubmitted: (value) => _bloc.passwordController,
+                          onTap: () {},
+                        ),
+                        CustomTextFormField(
+                          title: "Email Address",
+                          fieldText: "example@gmail.com",
+                          controller: _bloc.emailController,
+                          validator:
+                              // _bloc.bankIdValidate,
+                              RequiredValidator(errorText: "Email is required"),
+                          keyboardType: TextInputType.emailAddress,
                           onFieldSubmitted: (value) => _bloc.passwordController,
                           onTap: () {},
                         ),
@@ -120,6 +130,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                       "Password must have at least one special character"),
                             ],
                           ),
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          onFieldSubmitted: (value) {},
+                          onTap: () {},
+                        ),
+                        CustomTextFormField(
+                          title: "Re-type Password",
+                          fieldText: "******",
+                          controller: _bloc.confPasswordController,
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return "Required";
+                            }
+                            return MatchValidator(
+                                    errorText: "Passwords don't match")
+                                .validateMatch(
+                                    val, _bloc.passwordController.text);
+                          },
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
                           onFieldSubmitted: (value) {},
@@ -151,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Text(
-                                "Sign in",
+                                "Sign up",
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),

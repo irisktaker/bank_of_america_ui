@@ -36,7 +36,8 @@ class SplashScreen extends StatelessWidget {
                     splashBtn(
                       context,
                       text: "Open an Account",
-                      onPressed: () {},
+                      onPressed: () =>
+                          _splashScreenBloc.goToOpenAnAccountScreen(context),
                       fillColor: const Color(0xFF083C6F),
                       txtColor: const Color(0xFFFFFFFF),
                     ),

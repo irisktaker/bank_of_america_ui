@@ -4,7 +4,7 @@ class CustomTextFormField extends StatelessWidget {
   String title;
   String fieldText;
   TextEditingController controller;
-  String Function(String?)? validator;
+  String? Function(String?) validator;
   bool obscureText;
   TextInputType? keyboardType;
   void Function(String) onFieldSubmitted;

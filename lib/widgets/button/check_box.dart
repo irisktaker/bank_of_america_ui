@@ -19,13 +19,13 @@ class CustomCheckBox extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CircleAvatar(
-          radius: 7,
+          radius: 7.5,
           backgroundColor: Colors.grey,
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 6,
             child: Transform.scale(
-              scale: 0.8,
+              scale: 0.60,
               child: Checkbox(
                 checkColor: const Color.fromARGB(255, 91, 166, 228),
                 fillColor: MaterialStateProperty.all(Colors.white),
