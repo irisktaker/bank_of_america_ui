@@ -59,6 +59,8 @@ class FingerPrint extends StatelessWidget {
     );
   }
 
+  // biometric flutter
+
   Container customBtn(
     BuildContext context, {
     required String txt,

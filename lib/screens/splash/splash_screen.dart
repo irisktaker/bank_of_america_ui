@@ -4,8 +4,6 @@ import '../../widgets/background/background_widget.dart';
 import 'splash_screen_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
-  SplashScreen({Key? key}) : super(key: key);
-
   final SplashScreenBloc _splashScreenBloc = SplashScreenBloc();
 
   @override

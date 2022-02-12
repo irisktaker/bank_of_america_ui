@@ -42,21 +42,21 @@ class DashBoardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 240,
+                    height: size.height * 0.32,
                     child: Stack(
                       children: [
                         Positioned(
                           top: size.height * 0.09,
                           child: Container(
                             width: size.width - 32,
-                            height: 150,
+                            height: size.height * 0.20,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Column(
                               children: const [
-                                SizedBox(height: 75),
+                                SizedBox(height: 70),
                                 Text(
                                   "Hello John Doe!",
                                   style: TextStyle(
@@ -96,7 +96,7 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                   Container(
                     width: size.width - 32,
-                    height: 160,
+                    height: size.height * 0.20,
                     decoration: BoxDecoration(
                       color: const Color(0xFF083C6F).withOpacity(0.65),
                       borderRadius: BorderRadius.circular(30),
