@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:bank_of_america_ui/widgets/background_widget.dart';
+import 'package:bank_of_america_ui/widgets/background/background_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatelessWidget {

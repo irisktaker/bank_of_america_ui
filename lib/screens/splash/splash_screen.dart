@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import '/widgets/background_widget.dart';
-
-import 'login_screen.dart';
+import '../../widgets/button/splash_btn.dart';
+import '../../widgets/background/background_widget.dart';
+import 'splash_screen_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  SplashScreen({Key? key}) : super(key: key);
 
-  void gotToLoginScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
-  }
+  final SplashScreenBloc _splashScreenBloc = SplashScreenBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +29,8 @@ class SplashScreen extends StatelessWidget {
                     splashBtn(
                       context,
                       text: "Sign in with your account",
-                      onPressed: () => gotToLoginScreen(context),
+                      onPressed: () =>
+                          _splashScreenBloc.gotToLoginScreen(context),
                     ),
                     const SizedBox(height: 20),
                     splashBtn(
@@ -53,42 +47,6 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container splashBtn(
-    BuildContext context, {
-    required String text,
-    Color txtColor = const Color(0xFF4DBEE0),
-    required void Function()? onPressed,
-    Color fillColor = const Color(0xFFFFFFFF),
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      decoration: BoxDecoration(
-        color: fillColor.withOpacity(0.65),
-        borderRadius: BorderRadius.circular(50),
-      ),
-      child: Row(
-        children: [
-          Expanded(child: Container()),
-          MaterialButton(
-            onPressed: onPressed,
-            child: Text(text),
-            height: 44,
-            textColor: txtColor,
-          ),
-          Expanded(child: Container()),
-          IconButton(
-            onPressed: onPressed,
-            icon: Icon(
-              Icons.arrow_forward_ios,
-              size: 14,
-              color: txtColor,
-            ),
-          ),
-        ],
       ),
     );
   }

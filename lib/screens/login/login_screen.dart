@@ -1,12 +1,13 @@
 import 'dart:ui';
-import 'package:bank_of_america_ui/screens/dashboard.dart';
-import 'package:bank_of_america_ui/utils/constants.dart';
-
-import '/widgets/background_widget.dart';
-import '/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'fingerprint_screen.dart';
+import '../../widgets/background/background_widget.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
+import '../../widgets/button/check_box.dart';
+import '/screens/dashboard/dashboard.dart';
+import '../fingerprint/fingerprint_screen.dart';
+import '../../widgets/text_field/text_form_field.dart';
+import 'login_screen_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,17 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _bankIDController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  bool? idCheck = false;
-  bool? fingerprintCheck = false;
-
-  String bankIdValidate(value) {
-    value!.isEmpty ? "Please enter your bank ID" : null;
-
-    return value;
-  }
+  final LoginScreenBloc _loginScreenBloc = LoginScreenBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(),
-                ),
+                Expanded(flex: 3, child: Container()),
                 Container(
-                  height: 380,
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(
                     top: 26,
@@ -67,10 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            flex: 4,
-                            child: Container(),
-                          ),
+                          Expanded(flex: 4, child: Container()),
                           Text(
                             "Sign in",
                             style: TextStyle(
@@ -79,10 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(),
-                          ),
+                          Expanded(flex: 3, child: Container()),
                           InkWell(
                             onTap: () => Navigator.pop(context),
                             child: Container(
@@ -103,38 +84,39 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       const SizedBox(height: 36),
-                      textFormField(
+                      CustomTextFormField(
                         title: "PRO ID",
                         fieldText: "Enter your bank ID",
-                        controller: _bankIDController,
-                        validator: bankIdValidate,
+                        controller: _loginScreenBloc.bankIDController,
+                        validator: _loginScreenBloc.bankIdValidate,
                         keyboardType: TextInputType.number,
-                        onFieldSubmitted: (value) => _passwordController,
+                        onFieldSubmitted: (value) =>
+                            _loginScreenBloc.passwordController,
                         onTap: () {},
                       ),
-                      textFormField(
+                      CustomTextFormField(
                         title: "Password",
                         fieldText: "******",
-                        controller: _passwordController,
-                        validator: (value) {},
+                        controller: _loginScreenBloc.passwordController,
+                        validator: _loginScreenBloc.passwordValidate,
                         obscureText: true,
                         keyboardType: TextInputType.visiblePassword,
                         onFieldSubmitted: (value) {},
                         onTap: () {},
                       ),
-                      checkBox(
+                      CustomCheckBox(
                         txt: "Remember my ID for future login",
-                        value: idCheck,
+                        value: _loginScreenBloc.idCheck,
                         onChanged: (value) => setState(
-                          () => idCheck = value,
+                          () => _loginScreenBloc.idCheck = value,
                         ),
                       ),
                       const SizedBox(height: 8),
-                      checkBox(
+                      CustomCheckBox(
                         txt: "Use fingerprint recognition next time",
-                        value: fingerprintCheck,
+                        value: _loginScreenBloc.fingerprintCheck,
                         onChanged: (value) => setState(
-                          () => fingerprintCheck = value,
+                          () => _loginScreenBloc.fingerprintCheck = value,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -155,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: MaterialButton(
                           onPressed: () {
-                            fingerprintCheck == true
+                            _loginScreenBloc.fingerprintCheck == true
                                 ? Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -202,100 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Row checkBox({
-    required String txt,
-    required bool? value,
-    required void Function(bool?)? onChanged,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          radius: 9.5,
-          backgroundColor: Colors.grey,
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 7.5,
-            child: Checkbox(
-              checkColor: Colors.blue,
-              fillColor: MaterialStateProperty.all(Colors.white),
-              value: value,
-              onChanged: onChanged,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                side: BorderSide.none,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Text(
-          txt,
-          style: TextStyle(
-            color: Colors.grey.shade700,
-            fontSize: 10,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Column textFormField({
-    required String title,
-    required String fieldText,
-    required TextEditingController? controller,
-    required String? Function(String?)? validator,
-    bool obscureText = false,
-    TextInputType? keyboardType = TextInputType.text,
-    required void Function(String)? onFieldSubmitted,
-    required void Function()? onTap,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey.shade700,
-          ),
-        ),
-        TextFormField(
-          controller: controller,
-          validator: validator,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          onFieldSubmitted: onFieldSubmitted,
-          onTap: onTap,
-          style: TextStyle(
-            color: Colors.grey.shade700,
-            fontSize: 14,
-          ),
-          decoration: InputDecoration(
-            hintText: fieldText,
-            hintStyle: const TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
-            enabledBorder: underLineBorder(),
-            focusedBorder: underLineBorder(),
-            disabledBorder: underLineBorder(),
-          ),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  UnderlineInputBorder underLineBorder() {
-    return const UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: Colors.grey,
       ),
     );
   }

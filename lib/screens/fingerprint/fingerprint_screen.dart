@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import '/screens/dashboard.dart';
-import '/widgets/background_widget.dart';
+import '../dashboard/dashboard.dart';
+import '../../widgets/background/background_widget.dart';
 import 'package:flutter/material.dart';
 
 class FingerPrint extends StatelessWidget {
