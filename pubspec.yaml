@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   form_field_validator: ^1.1.0
   local_auth: ^1.1.10
+  intl: 
+
 
 dev_dependencies:
   flutter_test:

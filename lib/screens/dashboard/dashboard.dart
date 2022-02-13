@@ -1,7 +1,10 @@
 import 'dart:ui';
 
-import 'package:bank_of_america_ui/widgets/background/background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '/widgets/background/background_widget.dart';
+import '../../widgets/listtile/custom_listtile.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
@@ -12,8 +15,19 @@ class DashBoardScreen extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      drawer: const ClipRRect(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(40.0),
+          ),
+          child: Drawer()),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () => Drawer(),
+          child: Image.asset(
+            "assets/icons/menu.png",
+          ),
+        ),
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
@@ -23,14 +37,21 @@ class DashBoardScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Image.asset(
-              "assets/icons/menu.png",
-            ),
-          ),
-        ],
+        // actions: [
+        //   InkWell(
+        //     onTap: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => const Drawer(),
+        //         ),
+        //       );
+        //     },
+        //     child: Image.asset(
+        //       "assets/icons/menu.png",
+        //     ),
+        //   ),
+        // ],
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
@@ -42,33 +63,35 @@ class DashBoardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: size.height * 0.32,
+                    height: size.height * 0.27,
                     child: Stack(
                       children: [
                         Positioned(
-                          top: size.height * 0.09,
+                          top: size.height * 0.08,
                           child: Container(
                             width: size.width - 32,
-                            height: size.height * 0.20,
+                            height: size.height * 0.17,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Column(
-                              children: const [
-                                SizedBox(height: 70),
-                                Text(
+                              children: [
+                                const SizedBox(height: 70),
+                                const Text(
                                   "Hello John Doe!",
                                   style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 20,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1.3,
                                   ),
                                 ),
                                 Text(
-                                  "Last login: 10:33 AM, 08.02.2022",
-                                  style: TextStyle(
+                                  "Last login: " +
+                                      DateFormat("yyyy-MM-dd hh:mm")
+                                          .format(DateTime.now()),
+                                  style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.grey,
                                   ),
@@ -96,7 +119,8 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                   Container(
                     width: size.width - 32,
-                    height: size.height * 0.20,
+                    height: size.height * 0.18,
+                    padding: const EdgeInsets.symmetric(vertical: 6),
                     decoration: BoxDecoration(
                       color: const Color(0xFF083C6F).withOpacity(0.65),
                       borderRadius: BorderRadius.circular(30),
@@ -107,7 +131,7 @@ class DashBoardScreen extends StatelessWidget {
                         const Text(
                           "Bank Accounts",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 15,
                             color: Color(0xFF4DBEE0),
                             fontWeight: FontWeight.bold,
                           ),
@@ -115,7 +139,7 @@ class DashBoardScreen extends StatelessWidget {
                         const Text(
                           "2 Active Accounts",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -129,7 +153,7 @@ class DashBoardScreen extends StatelessWidget {
                         const Text(
                           "Accounting Balance",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 15,
                             color: Color(0xFF4DBEE0),
                             fontWeight: FontWeight.bold,
                           ),
@@ -146,7 +170,7 @@ class DashBoardScreen extends StatelessWidget {
                             const Text(
                               "\$ 6,328.33",
                               style: TextStyle(
-                                fontSize: 28,
+                                fontSize: 26,
                                 color: Colors.white,
                               ),
                             ),
@@ -156,7 +180,7 @@ class DashBoardScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Container(
@@ -212,91 +236,23 @@ class DashBoardScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.pink.shade400,
-                                  radius: 15,
-                                  child: const Icon(
-                                    Icons.lock_open_outlined,
-                                    color: Colors.white70,
-                                    size: 19,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "Remote Access Scam",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
-                                  ),
-                                ),
-                                Expanded(child: Container()),
-                                Text(
-                                  "9:33am 26 sep 17",
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontSize: 8,
-                                    color: Colors.grey.shade600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 40),
-                              child: Text(
-                                "The banking industry has seen an increase in customers and business receiving cold calls from ...",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                ),
+                            CustomListTile(
+                              title: "Remote Access Scam",
+                              subtitle:
+                                  "The banking industry has seen an increase in customers and business receiving cold calls from ...",
+                              widget: const Icon(
+                                Icons.lock_open_outlined,
+                                color: Colors.white70,
+                                size: 19,
                               ),
                             ),
                             const Divider(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.pink.shade400,
-                                  radius: 15,
-                                  child: Image.asset(
-                                    "assets/icons/headphones_icon.png",
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "Where can i find my IBAN?",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
-                                  ),
-                                ),
-                                Expanded(child: Container()),
-                                Text(
-                                  "9:33am 26 sep 17",
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontSize: 8,
-                                    color: Colors.grey.shade600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 40),
-                              child: Text(
-                                "The banking industry has seen an increase in customers and business receiving cold calls from ...",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                ),
+                            CustomListTile(
+                              title: "Where can i find my IBAN?",
+                              subtitle:
+                                  "The banking industry has seen an increase in customers and business receiving cold calls from ...",
+                              widget: Image.asset(
+                                "assets/icons/headphones_icon.png",
                               ),
                             ),
                             const SizedBox(
