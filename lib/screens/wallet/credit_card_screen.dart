@@ -1,4 +1,6 @@
 import 'package:bank_of_america_ui/screens/wallet/wallet_bloc.dart';
+import 'package:bank_of_america_ui/singleton/singleton.dart';
+import 'package:bank_of_america_ui/widgets/button/custom_main_btn.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/animated_slider/animated_slider.dart';
@@ -118,9 +120,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         ),
         Expanded(
           child: Container(
-            margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
             width: size.width,
             height: size.height,
+            margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
+            padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -128,7 +131,95 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 topRight: Radius.circular(30),
               ),
             ),
-            child: Column(),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/icons/three-o-clock-clock.png",
+                      height: 16,
+                      color: Colors.grey.shade900,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "History of Transactions",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey.shade600,
+                        letterSpacing: 1.1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SizedBox(
+                    child: ListView.builder(
+                      itemCount: Singleton.instance.historyTransaction.length,
+                      itemBuilder: (context, index) => Container(
+                        margin: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.grey.shade200,
+                                    image: DecorationImage(
+                                      image: AssetImage(Singleton.instance
+                                          .historyTransaction[index].logo),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Text(Singleton
+                                    .instance.historyTransaction[index].date),
+                                const Spacer(),
+                                Text(Singleton.instance
+                                    .historyTransaction[index].brandName),
+                                const Spacer(flex: 2),
+                                Text(Singleton.instance
+                                        .historyTransaction[index].currency +
+                                    " " +
+                                    Singleton.instance.historyTransaction[index]
+                                        .amountValue
+                                        .toString()),
+                                const SizedBox(width: 6),
+                                Image.asset(
+                                    Singleton.instance.historyTransaction[index]
+                                        .performance,
+                                    height: 10),
+                              ],
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              height: 1,
+                              color: Colors.grey.shade200,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                CustomMainBtn(
+                  onTap: () {},
+                  widget: const Align(
+                      alignment: Alignment.center,
+                      child:  Text(
+                        "View Transactions",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      )),
+                ),
+              ],
+            ),
           ),
         ),
       ],
