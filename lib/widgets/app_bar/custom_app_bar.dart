@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 
 AppBar customAppBar({
-  bool automaticallyImplyLeading = true,
-  Widget? leading,
+  required String title,
 }) {
   return AppBar(
+    // leading: InkWell(
+    //   onTap: () => Drawer(),
+    //   child: Image.asset(
+    //     "assets/icons/menu.png",
+    //   ),
+    // ),
+    automaticallyImplyLeading: true,
     backgroundColor: Colors.transparent,
     elevation: 0,
-    leading: leading,
-    automaticallyImplyLeading: automaticallyImplyLeading,
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Bank Of America",
-          style: TextStyle(
-            fontFamily: 'Roboto_Condensed',
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-        const SizedBox(width: 6),
-        Image.asset(
-          "assets/images/logo.png",
-        ),
-      ],
+    title: Text(
+      title.toUpperCase(),
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
     ),
+    centerTitle: true,
+    actions: [
+      InkWell(
+        onTap: () {},
+        child: Image.asset(
+          "assets/icons/menu.png",
+        ),
+      ),
+    ],
   );
 }
