@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
+import 'package:bank_of_america_ui/widgets/button/custom_main_btn.dart';
+
 import '../../widgets/Available_balance_card/Available_balance_card.dart';
 import '../../widgets/history_of_transaction_card/history_of_transaction_card.dart';
 import '/screens/wallet/wallet_bloc.dart';
@@ -85,22 +87,24 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      Text(Singleton.instance.creditHistoryTransaction[index].date),
+                      Text(Singleton
+                          .instance.creditHistoryTransaction[index].date),
                       const Spacer(),
                       Text(
-                        Singleton.instance.creditHistoryTransaction[index].brandName,
+                        Singleton
+                            .instance.creditHistoryTransaction[index].brandName,
                       ),
                       const Spacer(flex: 2),
-                      Text(Singleton
-                              .instance.creditHistoryTransaction[index].currency +
+                      Text(Singleton.instance.creditHistoryTransaction[index]
+                              .currency +
                           " " +
-                          Singleton
-                              .instance.creditHistoryTransaction[index].amountValue
+                          Singleton.instance.creditHistoryTransaction[index]
+                              .amountValue
                               .toString()),
                       const SizedBox(width: 6),
                       Image.asset(
-                          Singleton
-                              .instance.creditHistoryTransaction[index].performance,
+                          Singleton.instance.creditHistoryTransaction[index]
+                              .performance,
                           height: 10),
                     ],
                   ),
@@ -115,7 +119,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           ),
           btnTitle: "View Transactions",
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const MoreDetails()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const TransactionsHistory()));
           },
         ),
       ],

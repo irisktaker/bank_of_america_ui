@@ -6,17 +6,19 @@ import '../../singleton/singleton.dart';
 import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/background/background_widget.dart';
 import '../../widgets/history_of_transaction_card/history_of_transaction_card.dart';
+import '../drawer/drawer.dart';
 import 'credit_card_screen.dart';
 import 'saving_screen.dart';
 
-class MoreDetails extends StatefulWidget {
-  const MoreDetails({Key? key}) : super(key: key);
+class TransactionsHistory extends StatefulWidget {
+  const TransactionsHistory({Key? key}) : super(key: key);
 
   @override
-  State<MoreDetails> createState() => _MoreDetailsState();
+  State<TransactionsHistory> createState() => _TransactionsHistoryState();
 }
 
-class _MoreDetailsState extends State<MoreDetails> {
+class _TransactionsHistoryState extends State<TransactionsHistory> {
+  bool tapped = false;
   int screenIndex = 0;
 
   void selectedScreen(int index) {
@@ -45,6 +47,7 @@ class _MoreDetailsState extends State<MoreDetails> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -67,112 +70,126 @@ class _MoreDetailsState extends State<MoreDetails> {
           ),
         ),
         title: "wallet",
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 60,
-                    child: Expanded(
-                      child: SizedBox(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemExtent: 160,
-                          itemCount: walletToggleScreens.length,
-                          itemBuilder: (context, index) => Column(
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  // selectedScreen(index);
-                                },
-                                child: Text(
-                                  walletToggleScreens[index]['title']
-                                      .toUpperCase(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
+            child: Row(
+              children: [
+                // tapped ? DrawerScreen(size: size) : Container(),
+                SizedBox(
+                  width: size.width,
+                  height: size.height,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 60,
+                          child: Expanded(
+                            child: SizedBox(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemExtent: 160,
+                                itemCount: walletToggleScreens.length,
+                                itemBuilder: (context, index) => Column(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        // selectedScreen(index);
+                                      },
+                                      child: Text(
+                                        walletToggleScreens[index]['title']
+                                            .toUpperCase(),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    screenIndex == index
+                                        ? Container(
+                                            width: 55,
+                                            height: 3,
+                                            color: Colors.white,
+                                          )
+                                        : Container(),
+                                  ],
                                 ),
                               ),
-                              screenIndex == index
-                                  ? Container(
-                                      width: 55,
-                                      height: 3,
-                                      color: Colors.white,
-                                    )
-                                  : Container(),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: HistoryOfTransactionCard(
-                      // widget.index !!!
-                      titleLogo: "assets/icons/three-o-clock-clock.png",
-                      title: "History of Transactions",
-                      child: ListView.builder(
-                        itemCount:
-                            Singleton.instance.viewTransactionHistory.length,
-                        itemBuilder: (context, index) => Container(
-                          margin: const EdgeInsets.all(10),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(Singleton.instance
-                                      .viewTransactionHistory[index].date),
-                                  const Spacer(),
-                                  Text(
-                                    Singleton
-                                        .instance
-                                        .viewTransactionHistory[index]
-                                        .brandName,
-                                  ),
-                                  const Spacer(flex: 2),
-                                  Text(Singleton
-                                          .instance
-                                          .viewTransactionHistory[index]
-                                          .currency +
-                                      " " +
-                                      Singleton
-                                          .instance
-                                          .viewTransactionHistory[index]
-                                          .amountValue
-                                          .toString()),
-                                  const SizedBox(width: 6),
-                                  Image.asset(
-                                      Singleton
-                                          .instance
-                                          .viewTransactionHistory[index]
-                                          .performance,
-                                      height: 10),
-                                ],
+                        Expanded(
+                          flex: 10,
+                          child: HistoryOfTransactionCard(
+                            // widget.index !!!
+                            titleLogo: "assets/icons/three-o-clock-clock.png",
+                            title: "History of Transactions",
+                            child: ListView.builder(
+                              itemCount:
+                                  Singleton.instance.viewTransactionHistory.length,
+                              itemBuilder: (context, index) => Container(
+                                margin: const EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 12),
+                                    Row(
+                                      children: [
+                                        Text(Singleton.instance
+                                            .viewTransactionHistory[index].date),
+                                        const Spacer(),
+                                        Text(
+                                          Singleton
+                                              .instance
+                                              .viewTransactionHistory[index]
+                                              .brandName,
+                                        ),
+                                        const Spacer(flex: 2),
+                                        Text(Singleton
+                                                .instance
+                                                .viewTransactionHistory[index]
+                                                .currency +
+                                            " " +
+                                            Singleton
+                                                .instance
+                                                .viewTransactionHistory[index]
+                                                .amountValue
+                                                .toString()),
+                                        const SizedBox(width: 6),
+                                        Image.asset(
+                                            Singleton
+                                                .instance
+                                                .viewTransactionHistory[index]
+                                                .performance,
+                                            height: 10),
+                                      ],
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      height: 1,
+                                      color: Colors.grey.shade200,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                height: 1,
-                                color: Colors.grey.shade200,
-                              ),
-                            ],
+                            ),
+                            btnTitle: "More Details",
+                            onTap: () {},
                           ),
                         ),
-                      ),
-                      btnTitle: "View Transactions",
-                      onTap: () {},
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

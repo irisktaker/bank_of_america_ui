@@ -9,9 +9,15 @@ import 'bank_account_section.dart';
 import 'messages_section.dart';
 import 'name_profile_section.dart';
 
-class DashBoardScreen extends StatelessWidget {
+class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DashBoardScreen> createState() => _DashBoardScreenState();
+}
+
+class _DashBoardScreenState extends State<DashBoardScreen> {
+  bool tapped = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,6 +28,9 @@ class DashBoardScreen extends StatelessWidget {
         leading: Container(),
         title: "Dashboard",
         onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
         },
       ),
       body: BackgroundWidget(
@@ -30,14 +39,15 @@ class DashBoardScreen extends StatelessWidget {
           child: SafeArea(
             child: Row(
               children: [
-                DrawerScreen(size: size),
+                tapped ? DrawerScreen(size: size) : Container(),
                 Expanded(
                   child: ListView(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.only(right: 16),
                         child: SizedBox(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+import '../drawer/drawer.dart';
 import '/widgets/background/background_widget.dart';
 import '/widgets/app_bar/custom_app_bar.dart';
 import 'credit_card_screen.dart';
@@ -14,6 +15,7 @@ class WalletToggleScreens extends StatefulWidget {
 }
 
 class _WalletToggleScreensState extends State<WalletToggleScreens> {
+  bool tapped = false;
   int screenIndex = 0;
 
   void selectedScreen(int index) {
@@ -42,6 +44,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -64,54 +67,70 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
           ),
         ),
         title: "wallet",
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Column(
+            child: SizedBox(
+              width: size.width,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
-                  Expanded(
-                    child: SizedBox(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemExtent: 160,
-                        itemCount: walletToggleScreens.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                selectedScreen(index);
-                              },
-                              child: Text(
-                                walletToggleScreens[index]['title']
-                                    .toUpperCase(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                tapped ?  DrawerScreen(size: size) : Container(),
+                  SizedBox(
+                    width: size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemExtent: 160,
+                                itemCount: walletToggleScreens.length,
+                                itemBuilder: (context, index) => Column(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        selectedScreen(index);
+                                      },
+                                      child: Text(
+                                        walletToggleScreens[index]['title']
+                                            .toUpperCase(),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    screenIndex == index
+                                        ? Container(
+                                            width: 55,
+                                            height: 3,
+                                            color: Colors.white,
+                                          )
+                                        : Container(),
+                                  ],
                                 ),
                               ),
                             ),
-                            screenIndex == index
-                                ? Container(
-                                    width: 55,
-                                    height: 3,
-                                    color: Colors.white,
-                                  )
-                                : Container(),
-                          ],
-                        ),
+                          ),
+                          Expanded(
+                            flex: 10,
+                            child: SizedBox(
+                              child: walletToggleScreens[screenIndex]['screen'],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: SizedBox(
-                      child: walletToggleScreens[screenIndex]['screen'],
                     ),
                   ),
                 ],

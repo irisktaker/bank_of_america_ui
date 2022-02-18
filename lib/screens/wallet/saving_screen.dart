@@ -119,7 +119,7 @@ class _SavingScreenState extends State<SavingScreen> {
           btnTitle: "View Transactions",
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MoreDetails()));
+                MaterialPageRoute(builder: (context) => const TransactionsHistory()));
           },
         ),
       ],
