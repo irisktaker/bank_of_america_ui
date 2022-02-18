@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 AppBar customAppBar({
+  Widget? leading,
   required String title,
+  required void Function()? onTap,
 }) {
   return AppBar(
-    // leading: InkWell(
-    //   onTap: () => Drawer(),
-    //   child: Image.asset(
-    //     "assets/icons/menu.png",
-    //   ),
-    // ),
     automaticallyImplyLeading: true,
     backgroundColor: Colors.transparent,
     elevation: 0,
+    leadingWidth: 100,
+    leading: leading,
     title: Text(
       title.toUpperCase(),
       style: const TextStyle(
@@ -21,8 +19,8 @@ AppBar customAppBar({
     ),
     centerTitle: true,
     actions: [
-      InkWell(
-        onTap: () {},
+      MaterialButton(
+        onPressed: onTap,
         child: Image.asset(
           "assets/icons/menu.png",
         ),

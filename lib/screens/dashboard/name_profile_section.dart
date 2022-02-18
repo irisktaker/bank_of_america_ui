@@ -11,8 +11,10 @@ class NameProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: size.height * 0.27,
+      width: size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Stack(
         children: [
           Positioned(

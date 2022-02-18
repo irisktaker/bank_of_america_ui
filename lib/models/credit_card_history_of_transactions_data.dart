@@ -1,4 +1,4 @@
-class HistoryOfTransactionsData {
+class CDHistoryOfTransactionsData {
   String logo;
   String date;
   String brandName;
@@ -6,7 +6,7 @@ class HistoryOfTransactionsData {
   String currency;
   String performance;
 
-  HistoryOfTransactionsData({
+  CDHistoryOfTransactionsData({
     required this.logo,
     required this.date,
     required this.brandName,

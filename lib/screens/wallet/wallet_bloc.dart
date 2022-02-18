@@ -28,6 +28,8 @@ class WalletBloc {
     },
   ];
 
+  
+
   List<Widget> indicators(imagesLength, currentIndex) {
     return List<Widget>.generate(imagesLength, (index) {
       return Container(

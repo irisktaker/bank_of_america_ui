@@ -1,44 +1,173 @@
-import '/models/history_of_transactions_data.dart';
+import 'package:bank_of_america_ui/models/drawer_list.dart';
+import 'package:bank_of_america_ui/models/view_transactions.dart';
+
+import '/models/saving_history_of_transactions_data.dart';
+
+import '../models/credit_card_history_of_transactions_data.dart';
 
 class Singleton {
   Singleton();
   static final Singleton instance = Singleton();
 
-  List<HistoryOfTransactionsData> historyTransaction = [
-    HistoryOfTransactionsData(
+  List<CDHistoryOfTransactionsData> creditHistoryTransaction = [
+    CDHistoryOfTransactionsData(
       logo: "assets/images/zara.png",
       date: "29 Sep.21",
       brandName: "ZARA Mall",
       amountValue: 49.99,
       performance: "assets/icons/down-arrow.png",
     ),
-    HistoryOfTransactionsData(
+    CDHistoryOfTransactionsData(
       logo: "assets/images/rewe.png",
       date: "29 Sep.21",
       brandName: "REWE N23",
       amountValue: 76.45,
       performance: "assets/icons/down-arrow.png",
     ),
-    HistoryOfTransactionsData(
+    CDHistoryOfTransactionsData(
       logo: "assets/images/nike.png",
       date: "29 Sep.21",
       brandName: "Nile Town",
       amountValue: 109.99,
       performance: "assets/icons/down-arrow.png",
     ),
-    HistoryOfTransactionsData(
+    CDHistoryOfTransactionsData(
       logo: "assets/images/carrefour.png",
       date: "28 Sep.21",
       brandName: "Carrefour",
       amountValue: 15.33,
       performance: "assets/icons/down-arrow.png",
     ),
-    HistoryOfTransactionsData(
-      logo: "assets/images/zara.png",
-      date: "29 Sep.21",
-      brandName: "ZARA Mall",
-      amountValue: 49.99,
+  ];
+
+  List<SavingHistoryOfTransactionsData> savingHistoryTransaction = [
+    SavingHistoryOfTransactionsData(
+      date: "29 Sep. 21",
+      brandName: "Salary DDX Office",
+      amountValue: 5045.99,
       performance: "assets/icons/upward-arrow.png",
+    ),
+    SavingHistoryOfTransactionsData(
+      date: "29 Sep. 21",
+      brandName: "Office Deposit Refund",
+      amountValue: 109.99,
+      performance: "assets/icons/upward-arrow.png",
+    ),
+    SavingHistoryOfTransactionsData(
+      date: "26 Sep. 21",
+      brandName: "Car Payment",
+      amountValue: 499.99,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    SavingHistoryOfTransactionsData(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/upward-arrow.png",
+    ),
+  ];
+
+  List<ViewTransactions> viewTransactionHistory = [
+    ViewTransactions(
+      date: "29 Sep. 21",
+      brandName: "ZARA Store Mall Sofia",
+      amountValue: 45.99,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "29 Sep. 21",
+      brandName: "REWE Store",
+      amountValue: 109.99,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "26 Sep. 21",
+      brandName: "NIKE Factory Store",
+      amountValue: 499.99,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/upward-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/upward-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/down-arrow.png",
+    ),
+    ViewTransactions(
+      date: "24 Sep. 21",
+      brandName: "Cash Desk Deposit",
+      amountValue: 300.00,
+      performance: "assets/icons/upward-arrow.png",
+    ),
+  ];
+
+  List<DrawerList> drawerList = [
+    DrawerList(
+      icon: "assets/icons/wallet.png", 
+      text: "dashboard",
+    ),
+    DrawerList(
+      icon: "assets/icons/wallet2.png", 
+      text: "wallet",
+    ),
+    DrawerList(
+      icon: "assets/icons/messages.png", 
+      text: "messages",
+    ),
+    DrawerList(
+      icon: "assets/icons/bills.png", 
+      text: "utility bills",
+    ),
+    DrawerList(
+      icon: "assets/icons/funds.png", 
+      text: "funds transfer",
+    ),
+    DrawerList(
+      icon: "assets/icons/branches.png", 
+      text: "branches",
+    ),
+    DrawerList(
+      icon: "assets/icons/settings.png", 
+      text: "settings",
+    ),
+    DrawerList(
+      icon: "assets/icons/contact.png", 
+      text: "contact",
     ),
   ];
 }
