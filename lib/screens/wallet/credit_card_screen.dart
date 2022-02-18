@@ -209,14 +209,15 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 CustomMainBtn(
                   onTap: () {},
                   widget: const Align(
-                      alignment: Alignment.center,
-                      child:  Text(
-                        "View Transactions",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      )),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "View Transactions",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
