@@ -1,7 +1,7 @@
 import 'package:bank_of_america_ui/screens/wallet/wallet_toggle_screens.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/listtile/custom_listtile.dart';
+import '../../widgets/list_tile/custom_list_tile.dart';
 
 class MessagesSection extends StatelessWidget {
   const MessagesSection({
@@ -109,7 +109,7 @@ class MessagesSection extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => WalletToggleScreens(),
+                        builder: (context) => const WalletToggleScreens(),
                       ),
                     );
                   },

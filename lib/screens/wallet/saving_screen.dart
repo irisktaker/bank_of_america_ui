@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../singleton/singleton.dart';
-import '../../widgets/Available_balance_card/Available_balance_card.dart';
+import '../../widgets/available_balance_card/available_balance_card.dart';
 import '../../widgets/history_of_transaction_card/history_of_transaction_card.dart';
 import 'more_details_screen.dart';
 

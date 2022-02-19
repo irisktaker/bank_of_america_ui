@@ -84,9 +84,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               
                             setState(() {
                               
-                              for (var item in Singleton.instance.drawerList) {
+                              // for (var item in Singleton.instance.drawerList) {
                               
-                              }
+                              // }
                                 index == index ? tapped = !tapped : null;
 
                             });

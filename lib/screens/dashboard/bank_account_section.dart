@@ -48,7 +48,7 @@ class BankAccountSection extends StatelessWidget {
             onTap: (() => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WalletToggleScreens(),
+                    builder: (context) => const WalletToggleScreens(),
                   ),
                 )),
             child: Column(

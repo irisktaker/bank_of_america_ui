@@ -1,4 +1,4 @@
-import 'package:bank_of_america_ui/screens/dashboard/dashboard.dart';
+import '/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
         primarySwatch: Colors.blue,
       ),
-      // home: SplashScreen(),
-      home: DashBoardScreen(),
+      home: SplashScreen(),
+      // home: const DashBoardScreen(),
     );
   }
 }
