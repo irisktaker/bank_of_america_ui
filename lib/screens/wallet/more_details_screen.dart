@@ -6,7 +6,6 @@ import '../../singleton/singleton.dart';
 import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/background/background_widget.dart';
 import '../../widgets/history_of_transaction_card/history_of_transaction_card.dart';
-import '../drawer/drawer.dart';
 import 'credit_card_screen.dart';
 import 'saving_screen.dart';
 

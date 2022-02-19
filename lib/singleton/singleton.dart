@@ -1,5 +1,6 @@
 import 'package:bank_of_america_ui/models/drawer_list.dart';
 import 'package:bank_of_america_ui/models/view_transactions.dart';
+import 'package:flutter/material.dart';
 
 import '/models/saving_history_of_transactions_data.dart';
 
@@ -140,34 +141,42 @@ class Singleton {
     DrawerList(
       icon: "assets/icons/wallet.png", 
       text: "dashboard",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/wallet2.png", 
       text: "wallet",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/messages.png", 
       text: "messages",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/bills.png", 
       text: "utility bills",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/funds.png", 
       text: "funds transfer",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/branches.png", 
       text: "branches",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/settings.png", 
       text: "settings",
+      bgColor: Colors.transparent,
     ),
     DrawerList(
       icon: "assets/icons/contact.png", 
       text: "contact",
+      bgColor: Colors.transparent,
     ),
   ];
 }

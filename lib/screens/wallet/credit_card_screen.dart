@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
-import 'package:bank_of_america_ui/widgets/button/custom_main_btn.dart';
-
 import '../../widgets/Available_balance_card/Available_balance_card.dart';
 import '../../widgets/history_of_transaction_card/history_of_transaction_card.dart';
 import '/screens/wallet/wallet_bloc.dart';
