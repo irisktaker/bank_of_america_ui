@@ -13,7 +13,7 @@ class BankAccountSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width - 32,
-      height: size.height * 0.18,
+      height: size.height * 0.20,
       padding: const EdgeInsets.symmetric(vertical: 6),
       decoration: BoxDecoration(
         color: const Color(0xFF083C6F).withOpacity(0.65),

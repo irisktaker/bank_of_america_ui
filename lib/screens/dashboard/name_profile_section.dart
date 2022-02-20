@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class NameProfileSection extends StatelessWidget {
+class NameProfileSection extends StatefulWidget {
   const NameProfileSection({
     Key? key,
     required this.size,
@@ -10,18 +10,25 @@ class NameProfileSection extends StatelessWidget {
   final Size size;
 
   @override
+  State<NameProfileSection> createState() => _NameProfileSectionState();
+}
+
+class _NameProfileSectionState extends State<NameProfileSection> {
+  bool shadow = true;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 0.27,
-      width: size.width,
+      height: widget.size.height * 0.29,
+      width: widget.size.width,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Stack(
         children: [
           Positioned(
-            top: size.height * 0.08,
+            top: widget.size.height * 0.08,
             child: Container(
-              width: size.width - 32,
-              height: size.height * 0.17,
+              width: widget.size.width - 32,
+              height: widget.size.height * 0.19,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -40,8 +47,7 @@ class NameProfileSection extends StatelessWidget {
                   ),
                   Text(
                     "Last login: " +
-                        DateFormat("yyyy-MM-dd hh:mm")
-                            .format(DateTime.now()),
+                        DateFormat("yyyy-MM-dd hh:mm").format(DateTime.now()),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -51,17 +57,24 @@ class NameProfileSection extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: CircleAvatar(
-              backgroundColor:
-                  const Color(0xFFFFFFFF).withOpacity(0.4),
-              radius: 65,
-              child: const CircleAvatar(
-                backgroundImage: AssetImage(
-                  "assets/images/profile.png",
+          InkWell(
+            onTap: () {
+              setState(() {
+                shadow = !shadow;
+              });
+            },
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: CircleAvatar(
+                backgroundColor:
+                    const Color(0xFFFFFFFF).withOpacity(shadow ? 0.4 : 0.0),
+                radius: 65,
+                child: CircleAvatar(
+                  backgroundImage: const AssetImage(
+                    "assets/images/profile.png",
+                  ),
+                  radius: shadow ? 55 : 65,
                 ),
-                radius: 55,
               ),
             ),
           ),

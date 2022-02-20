@@ -142,41 +142,49 @@ class Singleton {
       icon: "assets/icons/wallet.png", 
       text: "dashboard",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/wallet2.png", 
       text: "wallet",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/messages.png", 
       text: "messages",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/bills.png", 
       text: "utility bills",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/funds.png", 
       text: "funds transfer",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/branches.png", 
       text: "branches",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/settings.png", 
       text: "settings",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
     DrawerList(
       icon: "assets/icons/contact.png", 
       text: "contact",
       bgColor: Colors.transparent,
+      isSelected: false,
     ),
   ];
 }

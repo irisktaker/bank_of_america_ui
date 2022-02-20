@@ -1,3 +1,4 @@
+import '../../models/drawer_list.dart';
 import '/screens/splash/splash_screen.dart';
 import '/singleton/singleton.dart';
 import '/widgets/button/custom_main_btn.dart';
@@ -16,8 +17,9 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  bool tapped = false;
-  
+  bool shadow = true;
+  int prevuesSelectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,14 +29,22 @@ class _DrawerScreenState extends State<DrawerScreen> {
           Row(
             children: [
               const SizedBox(width: 16),
-              CircleAvatar(
-                backgroundColor: const Color(0xFFFFFFFF).withOpacity(0.2),
-                radius: 45,
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage(
-                    "assets/images/profile.png",
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    shadow = !shadow;
+                  });
+                },
+                child: CircleAvatar(
+                  backgroundColor:
+                      const Color(0xFFFFFFFF).withOpacity(shadow ? 0.2 : 0.0),
+                  radius: 45,
+                  child: CircleAvatar(
+                    backgroundImage: const AssetImage(
+                      "assets/images/profile.png",
+                    ),
+                    radius: shadow ? 35 : 45,
                   ),
-                  radius: 35,
                 ),
               ),
               const SizedBox(width: 16),
@@ -81,24 +91,37 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         itemCount: Singleton.instance.drawerList.length,
                         itemBuilder: (context, index) => InkWell(
                           onTap: () {
-                              
                             setState(() {
-                              
-                              // for (var item in Singleton.instance.drawerList) {
-                              
-                              // }
-                                index == index ? tapped = !tapped : null;
 
+                              if (prevuesSelectedIndex == index) {
+                                Singleton
+                                        .instance.drawerList[index].isSelected =
+                                    !Singleton
+                                        .instance.drawerList[index].isSelected;
+                              } else {
+                                prevuesSelectedIndex = index;
+
+                                for (DrawerList item
+                                    in Singleton.instance.drawerList) {
+                                  item.isSelected = false;
+                                }
+
+                                Singleton
+                                        .instance.drawerList[index].isSelected =
+                                    !Singleton
+                                        .instance.drawerList[index].isSelected;
+                              }
+                              
                             });
                           },
                           child: drawerList(
                             icon: Singleton.instance.drawerList[index].icon,
                             txt: Singleton.instance.drawerList[index].text
                                 .toUpperCase(),
-                            color: tapped
+                            color: Singleton
+                                    .instance.drawerList[index].isSelected
                                 ? const Color.fromARGB(255, 230, 248, 255)
                                 : Singleton.instance.drawerList[index].bgColor,
-                                
                           ),
                         ),
                       ),

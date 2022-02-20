@@ -17,6 +17,7 @@ class MessagesSection extends StatelessWidget {
       child: SingleChildScrollView(
         child: Container(
           width: size.width - 32,
+          height: size.height * 0.38,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
             color: const Color(0xFFFFFFFF),
@@ -86,9 +87,7 @@ class MessagesSection extends StatelessWidget {
                   "assets/icons/headphones_icon.png",
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              Expanded(child: Container()),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 38,
