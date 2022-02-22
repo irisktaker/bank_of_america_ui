@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget {
                       context,
                       text: "Sign in with your account",
                       onPressed: () =>
-                          _splashScreenBloc.gotToLoginScreen(context),
+                          _splashScreenBloc.goToLoginScreen(context),
                     ),
                     const SizedBox(height: 20),
                     splashBtn(

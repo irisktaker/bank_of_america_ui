@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             
                             if (_bloc.formKey.currentState!.validate()) {                           
                               await _bloc.rememberMyIdForFutureLogin(context);
-                              _bloc.singWithFingerPrint(context);
+                              // _bloc.singWithFingerPrint(context);
                             }
 
                           },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/app_bar/custom_app_bar.dart';
 import '../drawer/drawer.dart';
+import '../messages_screen.dart';
 import '/widgets/background/background_widget.dart';
 import 'bank_account_section.dart';
 import 'messages_section.dart';
@@ -56,7 +57,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               NameProfileSection(size: size),
                               BankAccountSection(size: size),
                               const SizedBox(height: 16),
-                              MessagesSection(size: size),
+                              SizedBox(
+                                height: size.height * 0.33,
+                                child: MessagesSection(size: size)),
+                              btnViewMore(context),
+                              const SizedBox(height: 10),
                             ],
                           ),
                         ),
@@ -67,6 +72,41 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+    Container btnViewMore(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width - 32,
+      height: 38,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(22),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color(0xFF083C6F).withOpacity(0.70),
+            const Color(0xFF4DBEE0).withOpacity(0.70),
+            const Color(0xFF4DBEE0).withOpacity(0.70),
+          ],
+        ),
+      ),
+      child: MaterialButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MessagesScreen(),
+            ),
+          );
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+        ),
+        textColor: Colors.white,
+        child: const Text(
+          "View More",
         ),
       ),
     );

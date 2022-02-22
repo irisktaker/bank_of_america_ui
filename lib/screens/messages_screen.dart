@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bank_of_america_ui/screens/dashboard/messages_section.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/app_bar/custom_app_bar.dart';
@@ -11,6 +12,7 @@ class MessagesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -39,8 +41,12 @@ class MessagesScreen extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Center(
-              child: Text("Messages Screen"),
+            child: Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                height: size.height,
+                child: MessagesSection(size: size),
+              ),
             ),
           ),
         ),
