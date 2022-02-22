@@ -131,6 +131,14 @@ class _DrawerScreenState extends State<DrawerScreen>
                                   !Singleton
                                       .instance.drawerList[index].isSelected;
                             }
+
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(builder: (context) {
+                                return Singleton.instance.drawerList[index].nav;
+                              },
+                              ),
+                            );
                           });
                         },
                         child: drawerList(

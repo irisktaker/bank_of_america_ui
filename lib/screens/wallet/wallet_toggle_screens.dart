@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+import '../dashboard/dashboard.dart';
 import '../drawer/drawer.dart';
 import '/widgets/background/background_widget.dart';
 import '/widgets/app_bar/custom_app_bar.dart';
@@ -49,7 +50,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
         leading: InkWell(
-          onTap: (() => Navigator.pop(context)),
+          onTap: (() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children:const [

@@ -5,11 +5,13 @@ class DrawerList {
   String text;
   Color bgColor;
   bool isSelected;
+  Widget nav;
 
   DrawerList({
     required this.icon,
     required this.text,
     required this.bgColor,
     required this.isSelected,
+    required this.nav,
   });
 }

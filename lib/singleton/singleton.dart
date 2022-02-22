@@ -1,10 +1,17 @@
-import 'package:bank_of_america_ui/models/drawer_list.dart';
-import 'package:bank_of_america_ui/models/view_transactions.dart';
+import 'package:bank_of_america_ui/screens/branches_screen.dart';
+import 'package:bank_of_america_ui/screens/constacts_screen.dart';
+import 'package:bank_of_america_ui/screens/dashboard/dashboard.dart';
+import 'package:bank_of_america_ui/screens/funds_transfer_screen.dart';
+import 'package:bank_of_america_ui/screens/messages_screen.dart';
+import 'package:bank_of_america_ui/screens/settings_screen.dart';
+import 'package:bank_of_america_ui/screens/utility_bills/utility_bills_screen.dart';
+import 'package:bank_of_america_ui/screens/wallet/wallet_toggle_screens.dart';
 import 'package:flutter/material.dart';
 
+import '/models/drawer_list.dart';
+import '/models/view_transactions.dart';
 import '/models/saving_history_of_transactions_data.dart';
-
-import '../models/credit_card_history_of_transactions_data.dart';
+import '/models/credit_card_history_of_transactions_data.dart';
 
 class Singleton {
   Singleton();
@@ -143,48 +150,56 @@ class Singleton {
       text: "dashboard",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const DashBoardScreen(),
     ),
     DrawerList(
       icon: "assets/icons/wallet2.png", 
       text: "wallet",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const WalletToggleScreens(),
     ),
     DrawerList(
       icon: "assets/icons/messages.png", 
       text: "messages",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const MessagesScreen(),
     ),
     DrawerList(
       icon: "assets/icons/bills.png", 
       text: "utility bills",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const UtilityBillsScreen(),
     ),
     DrawerList(
       icon: "assets/icons/funds.png", 
       text: "funds transfer",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const FundsTransferScreen(),
     ),
     DrawerList(
       icon: "assets/icons/branches.png", 
       text: "branches",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const BranchesScreen(),
     ),
     DrawerList(
       icon: "assets/icons/settings.png", 
       text: "settings",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const SettingsScreen(),
     ),
     DrawerList(
       icon: "assets/icons/contact.png", 
       text: "contact",
       bgColor: Colors.transparent,
       isSelected: false,
+      nav: const ContactsScreen(),
     ),
   ];
 }
