@@ -146,7 +146,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                                   : Colors.grey,
                           iconColor:
                               Singleton.instance.drawerList[index].isSelected
-                                  ? const Color(0xFF4DBEE0)
+                                  ? const Color.fromARGB(255, 9, 191, 247)
                                   : Colors.grey,
                           padding:
                               Singleton.instance.drawerList[index].isSelected
@@ -225,7 +225,7 @@ class _DrawerScreenState extends State<DrawerScreen>
             const SizedBox(width: 26),
             Image.asset(
               icon,
-              color: txtColor,
+              color: iconColor,
             ),
             const SizedBox(width: 16),
             Text(
@@ -233,7 +233,7 @@ class _DrawerScreenState extends State<DrawerScreen>
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: iconColor,
+                color: txtColor,
               ),
             ),
           ],

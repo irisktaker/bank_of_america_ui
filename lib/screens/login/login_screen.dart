@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../../widgets/background/background_widget.dart';
-import '../../widgets/app_bar/custom_logo_app_bar.dart';
-import '../../widgets/button/check_box.dart';
-import '../../widgets/button/custom_main_btn.dart';
-import '../../widgets/text_field/text_form_field.dart';
+import '/widgets/background/background_widget.dart';
+import '/widgets/app_bar/custom_logo_app_bar.dart';
+import '/widgets/button/check_box.dart';
+import '/widgets/button/custom_main_btn.dart';
+import '/widgets/text_field/text_form_field.dart';
 import 'login_screen_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +17,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   final LoginScreenBloc _bloc = LoginScreenBloc();
+
+  @override
+  void initState() {
+   _bloc.getBankIdFromSecureStorage();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,26 +133,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {},
                         ),
                         CustomCheckBox(
-                          txt: "Remember my ID for future login",
-                          value: _bloc.idCheck,
-                          onChanged: (value) => setState(
-                            () => _bloc.idCheck = value,
-                          ),
-                        ),
+                            txt: "Remember my ID for future login",
+                            value: _bloc.idCheck,
+                            onChanged: (value) {
+                              setState(() {
+                                _bloc.idCheck = value;
+                              });
+                            }),
                         const SizedBox(height: 8),
                         CustomCheckBox(
-                          txt: "Use fingerprint recognition next time",
-                          value: _bloc.fingerprintCheck,
-                          onChanged: (value) => setState(
-                            () => _bloc.fingerprintCheck = value,
-                          ),
-                        ),
+                            txt: "Use fingerprint recognition next time",
+                            value: _bloc.fingerprintCheck,
+                            onChanged: (value) {
+                              setState(() {
+                                _bloc.fingerprintCheck = value;
+                              });
+                            }),
                         const SizedBox(height: 16),
                         CustomMainBtn(
-                          onTap: () {
-                            if (_bloc.formKey.currentState!.validate()) {
+                          onTap: () async {
+                            
+                            if (_bloc.formKey.currentState!.validate()) {                           
+                              await _bloc.rememberMyIdForFutureLogin(context);
                               _bloc.singWithFingerPrint(context);
                             }
+
                           },
                           widget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

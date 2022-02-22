@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../dashboard/dashboard.dart';
 import '../fingerprint/fingerprint_screen.dart';
@@ -9,32 +10,37 @@ class LoginScreenBloc {
   final TextEditingController bankIDController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // Create storage variable
+  final storage = const FlutterSecureStorage();
+
+  // String savedBankId = "";
+
   bool? idCheck = false;
   bool? fingerprintCheck = false;
 
-  // String bankIdValidate(value) {
-  //   if (value!.isEmpty) {
-  //     return "Please enter your bank ID";
-  //   }
-  //   return '';
-  // }
+  Future<void> rememberMyIdForFutureLogin(BuildContext context) async {
+    if (idCheck == true) {
 
-  // String passwordValidate(value) {
-  //   if (value!.isEmpty) {
-  //     return "Please enter your password";
-  //   }
-  //   if (value.length < 6) {
-  //     return "Password must be at least 6 characters long";
-  //   }
-  //   if (value.length > 20) {
-  //     return "Password must be less than 20 characters";
-  //   }
-  //   if (!value.contains(RegExp(r'[0-9]'))) {
-  //     return "Password must contain a number";
-  //   }
+      // TO_DO: Save ID for future login in SecureStorage
+      // Write value
+      await storage.write(key: "BRO_ID", value: bankIDController.text);
+      await storage.write(key: "Password", value: passwordController.text);
+    }
 
-  //   return '';
-  // }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const DashBoardScreen(),
+      ),
+    );
+  }
+
+  // Read value
+  void getBankIdFromSecureStorage() async {
+    await storage.read(key: "BRO_ID");
+    await storage.read(key: "Password");
+  }
+
 
   void singWithFingerPrint(BuildContext context) {
     fingerprintCheck == true
