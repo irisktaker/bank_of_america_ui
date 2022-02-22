@@ -16,14 +16,39 @@ class DrawerScreen extends StatefulWidget {
   State<DrawerScreen> createState() => _DrawerScreenState();
 }
 
-class _DrawerScreenState extends State<DrawerScreen> {
+class _DrawerScreenState extends State<DrawerScreen>
+    with TickerProviderStateMixin {
   bool shadow = true;
   int prevuesSelectedIndex = 0;
+
+  // late Animation animation;
+  // late AnimationController animationController;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   animationController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
+  //   animation = Tween<double>(begin: 0, end: 320).animate(animationController)..addListener(() {
+  //     setState(() {
+
+  //     });
+  //   });
+  //   animationController.forward();
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+
+  //   animationController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.size.width * 0.80,
+      // width: animation.value,
       child: Column(
         children: [
           Row(
@@ -73,8 +98,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
           const SizedBox(height: 20),
           Expanded(
             child: Container(
-              width: widget.size.width * 0.80,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -84,45 +108,59 @@ class _DrawerScreenState extends State<DrawerScreen> {
               child: Column(
                 children: [
                   Expanded(
-                    child: SizedBox(
-                      width: widget.size.width * 0.80,
-                      child: ListView.builder(
-                        itemExtent: 65,
-                        itemCount: Singleton.instance.drawerList.length,
-                        itemBuilder: (context, index) => InkWell(
-                          onTap: () {
-                            setState(() {
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemExtent: 65,
+                      itemCount: Singleton.instance.drawerList.length,
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (prevuesSelectedIndex == index) {
+                              Singleton.instance.drawerList[index].isSelected =
+                                  !Singleton
+                                      .instance.drawerList[index].isSelected;
+                            } else {
+                              prevuesSelectedIndex = index;
 
-                              if (prevuesSelectedIndex == index) {
-                                Singleton
-                                        .instance.drawerList[index].isSelected =
-                                    !Singleton
-                                        .instance.drawerList[index].isSelected;
-                              } else {
-                                prevuesSelectedIndex = index;
-
-                                for (DrawerList item
-                                    in Singleton.instance.drawerList) {
-                                  item.isSelected = false;
-                                }
-
-                                Singleton
-                                        .instance.drawerList[index].isSelected =
-                                    !Singleton
-                                        .instance.drawerList[index].isSelected;
+                              for (DrawerList item
+                                  in Singleton.instance.drawerList) {
+                                item.isSelected = false;
                               }
-                              
-                            });
-                          },
-                          child: drawerList(
-                            icon: Singleton.instance.drawerList[index].icon,
-                            txt: Singleton.instance.drawerList[index].text
-                                .toUpperCase(),
-                            color: Singleton
-                                    .instance.drawerList[index].isSelected
-                                ? const Color.fromARGB(255, 230, 248, 255)
-                                : Singleton.instance.drawerList[index].bgColor,
-                          ),
+
+                              Singleton.instance.drawerList[index].isSelected =
+                                  !Singleton
+                                      .instance.drawerList[index].isSelected;
+                            }
+                          });
+                        },
+                        child: drawerList(
+                          icon: Singleton.instance.drawerList[index].icon,
+                          txt: Singleton.instance.drawerList[index].text
+                              .toUpperCase(),
+                          color: Singleton.instance.drawerList[index].isSelected
+                              ? const Color.fromARGB(49, 0, 194, 253)
+                              : Singleton.instance.drawerList[index].bgColor,
+                          txtColor:
+                              Singleton.instance.drawerList[index].isSelected
+                                  ? const Color(0xFF4DBEE0)
+                                  : Colors.grey,
+                          iconColor:
+                              Singleton.instance.drawerList[index].isSelected
+                                  ? const Color(0xFF4DBEE0)
+                                  : Colors.grey,
+                          padding:
+                              Singleton.instance.drawerList[index].isSelected
+                                  ? const EdgeInsets.only(top: 8, bottom: 8)
+                                  : const EdgeInsets.only(
+                                      left: 12, top: 8, bottom: 8),
+                          selectedContainerShape:
+                              Singleton.instance.drawerList[index].isSelected
+                                  ? Container(
+                                      width: 7,
+                                      height: 65,
+                                      color: const Color(0xFF4DBEE0),
+                                    )
+                                  : Container(),
                         ),
                       ),
                     ),
@@ -165,9 +203,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
     required String icon,
     required String txt,
     required Color color,
+    required Color txtColor,
+    required Color iconColor,
+    required EdgeInsetsGeometry padding,
+    required Widget selectedContainerShape,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: padding,
       child: Container(
         margin: const EdgeInsets.only(right: 36),
         decoration: BoxDecoration(
@@ -179,17 +221,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
         ),
         child: Row(
           children: [
+            selectedContainerShape,
             const SizedBox(width: 26),
             Image.asset(
               icon,
-              color: Colors.grey,
+              color: txtColor,
             ),
             const SizedBox(width: 16),
             Text(
               txt,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
-                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+                color: iconColor,
               ),
             ),
           ],

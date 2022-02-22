@@ -17,7 +17,8 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  bool tapped = false;
+  bool tapped = false;  
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
