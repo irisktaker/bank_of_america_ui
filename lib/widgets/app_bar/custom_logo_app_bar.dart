@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 AppBar customLogoAppBar({
   bool automaticallyImplyLeading = true,
   Widget? leading,
+  List<Widget>? actions,
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
+    leadingWidth: 80,
     leading: leading,
     automaticallyImplyLeading: automaticallyImplyLeading,
     title: Row(
@@ -25,5 +27,6 @@ AppBar customLogoAppBar({
         ),
       ],
     ),
+    actions: actions,
   );
 }

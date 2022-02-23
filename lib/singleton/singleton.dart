@@ -8,6 +8,7 @@ import 'package:bank_of_america_ui/screens/utility_bills/utility_bills_screen.da
 import 'package:bank_of_america_ui/screens/wallet/wallet_toggle_screens.dart';
 import 'package:flutter/material.dart';
 
+import '../models/settings_list_data.dart';
 import '/models/drawer_list.dart';
 import '/models/view_transactions.dart';
 import '/models/saving_history_of_transactions_data.dart';
@@ -146,60 +147,105 @@ class Singleton {
 
   List<DrawerList> drawerList = [
     DrawerList(
-      icon: "assets/icons/wallet.png", 
+      icon: "assets/icons/wallet.png",
       text: "dashboard",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const DashBoardScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/wallet2.png", 
+      icon: "assets/icons/wallet2.png",
       text: "wallet",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const WalletToggleScreens(),
     ),
     DrawerList(
-      icon: "assets/icons/messages.png", 
+      icon: "assets/icons/messages.png",
       text: "messages",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const MessagesScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/bills.png", 
+      icon: "assets/icons/bills.png",
       text: "utility bills",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const UtilityBillsScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/funds.png", 
+      icon: "assets/icons/funds.png",
       text: "funds transfer",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const FundsTransferScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/branches.png", 
+      icon: "assets/icons/branches.png",
       text: "branches",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const BranchesScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/settings.png", 
+      icon: "assets/icons/settings.png",
       text: "settings",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const SettingsScreen(),
     ),
     DrawerList(
-      icon: "assets/icons/contact.png", 
+      icon: "assets/icons/contact.png",
       text: "contact",
       bgColor: Colors.transparent,
       isSelected: false,
       nav: const ContactsScreen(),
+    ),
+  ];
+
+  List<SettingsListData> settingsList = [
+    SettingsListData(
+      icon: "assets/icons/chechings.png",
+      title: "checkings and loans",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/credit_card.png",
+      title: "credit cards",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/home_loans.png",
+      title: "home loans",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/auto_loans.png",
+      title: "auto loans",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/small_b.png",
+      title: "small business",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/investments.png",
+      title: "investment",
+      isSelected: false,
+      nav: null,
+    ),
+    SettingsListData(
+      icon: "assets/icons/home_loans.png",
+      title: "home loans",
+      isSelected: false,
+      nav: null,
     ),
   ];
 }

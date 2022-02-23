@@ -5,12 +5,22 @@ import 'package:flutter/material.dart';
 import '../widgets/app_bar/custom_app_bar.dart';
 import '../widgets/background/background_widget.dart';
 import 'dashboard/dashboard.dart';
+import 'drawer/drawer.dart';
 
-class FundsTransferScreen extends StatelessWidget {
+class FundsTransferScreen extends StatefulWidget {
   const FundsTransferScreen({Key? key}) : super(key: key);
 
   @override
+  State<FundsTransferScreen> createState() => _FundsTransferScreenState();
+}
+
+class _FundsTransferScreenState extends State<FundsTransferScreen> {
+  bool tapped = false;
+
+  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -32,15 +42,23 @@ class FundsTransferScreen extends StatelessWidget {
             ],
           ),
         ),
-        title: "wallet",
-        onTap: () {},
+        title: "funds transfer",
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Center(
-              child: Text("Funds Transfer Screen"),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                tapped ? DrawerScreen(size: size) : Container(), 
+                
+              ],
             ),
           ),
         ),
