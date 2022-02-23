@@ -6,9 +6,23 @@ import 'package:flutter/material.dart';
 import '../widgets/app_bar/custom_app_bar.dart';
 import '../widgets/background/background_widget.dart';
 import 'dashboard/dashboard.dart';
+import 'drawer/drawer.dart';
 
-class MessagesScreen extends StatelessWidget {
+class MessagesScreen extends StatefulWidget {
   const MessagesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MessagesScreen> createState() => _MessagesScreenState();
+}
+
+class _MessagesScreenState extends State<MessagesScreen> {
+  
+  int screenIndex = 0;
+  bool tapped = false;
+  
+  void selectedScreen(int index) {
+    screenIndex = index;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +31,10 @@ class MessagesScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
         leading: InkWell(
-          onTap: (() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()))),
+          onTap: (() => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DashBoardScreen()))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
@@ -34,18 +51,31 @@ class MessagesScreen extends StatelessWidget {
             ],
           ),
         ),
-        title: "wallet",
-        onTap: () {},
+        title: "Messages",
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                height: size.height,
-                child: MessagesSection(size: size),
+            child: SizedBox(
+              width: size.width,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  tapped ? DrawerScreen(size: size) : Container(),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      height: size.height,
+                      child: MessagesSection(size: size),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

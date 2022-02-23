@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class WalletBloc {
   late PageController pageController;
+
+  bool tapped = false;
+  int screenIndex = 0;
   int activePage = 0;
 
   // "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg",

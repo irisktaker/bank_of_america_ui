@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:bank_of_america_ui/screens/wallet/wallet_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard/dashboard.dart';
@@ -16,12 +17,11 @@ class WalletToggleScreens extends StatefulWidget {
 }
 
 class _WalletToggleScreensState extends State<WalletToggleScreens> {
-  bool tapped = false;
-  int screenIndex = 0;
-
+  final WalletBloc _bloc = WalletBloc();
+  
   void selectedScreen(int index) {
     setState(() {
-      screenIndex = index;
+      _bloc.screenIndex = index;
     });
   }
 
@@ -70,7 +70,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
         title: "wallet",
         onTap: () {
           setState(() {
-            tapped = !tapped;
+            _bloc.tapped = !_bloc.tapped;
           });
         },
       ),
@@ -83,7 +83,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                tapped ?  DrawerScreen(size: size) : Container(),
+                _bloc.tapped ?  DrawerScreen(size: size) : Container(),
                   SizedBox(
                     width: size.width,
                     child: Padding(
@@ -112,7 +112,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
                                         ),
                                       ),
                                     ),
-                                    screenIndex == index
+                                    _bloc.screenIndex == index
                                         ? Container(
                                             width: 55,
                                             height: 3,
@@ -127,7 +127,7 @@ class _WalletToggleScreensState extends State<WalletToggleScreens> {
                           Expanded(
                             flex: 10,
                             child: SizedBox(
-                              child: walletToggleScreens[screenIndex]['screen'],
+                              child: walletToggleScreens[_bloc.screenIndex]['screen'],
                             ),
                           ),
                         ],
