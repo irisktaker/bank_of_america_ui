@@ -57,54 +57,59 @@ class _ProductsScreenState extends State<ProductsScreen> {
               height: size.height,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: size.width / 2,
-                      mainAxisSpacing: 16.0,
-                      crossAxisSpacing: 16.0,
-                      childAspectRatio: 0.8),
-                  itemBuilder: (context, index) {
-                    return containerBox(
-                      size,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            const Expanded(child: SizedBox()),
-                            Image.asset(
-                              Singleton.instance.settingsList[index].icon,
-                              scale: 0.8,
-                            ),
-                            const Expanded(child: SizedBox()),
-                            Text(
-                              Singleton.instance.settingsList[index].title
-                                  .toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Expanded(child: SizedBox()),
-                            CustomMainBtn(
-                                onTap: () {},
-                                height: 38,
-                                widget: const Center(
-                                  child: Text(
-                                    "Details",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                child: ListView(
+                  children: [
+                    
+                    GridView.builder(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: size.width / 2,
+                          mainAxisSpacing: 16.0,
+                          crossAxisSpacing: 16.0,
+                          childAspectRatio: 0.8),
+                      itemBuilder: (context, index) {
+                        return containerBox(
+                          size,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              children: [
+                                const Expanded(child: SizedBox()),
+                                Image.asset(
+                                  Singleton.instance.settingsList[index].icon,
+                                  scale: 0.8,
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  Singleton.instance.settingsList[index].title
+                                      .toUpperCase(),
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ),),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: Singleton.instance.settingsList.length,
-                  shrinkWrap: true,
+                                ),
+                                const Expanded(child: SizedBox()),
+                                CustomMainBtn(
+                                    onTap: () {},
+                                    height: 38,
+                                    widget: const Center(
+                                      child: Text(
+                                        "Details",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: Singleton.instance.settingsList.length,
+                      shrinkWrap: true,
+                    ),
+                  ],
                 ),
               ),
             ),

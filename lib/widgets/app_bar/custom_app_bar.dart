@@ -6,7 +6,7 @@ AppBar customAppBar({
   required void Function()? onTap,
 }) {
   return AppBar(
-    automaticallyImplyLeading: true,
+    automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
     elevation: 0,
     leadingWidth: 100,
