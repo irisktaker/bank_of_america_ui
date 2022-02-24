@@ -14,7 +14,8 @@ AppBar customAppBar({
     title: Text(
       title.toUpperCase(),
       style: const TextStyle(
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w900,
+        fontSize: 18,
       ),
     ),
     centerTitle: true,

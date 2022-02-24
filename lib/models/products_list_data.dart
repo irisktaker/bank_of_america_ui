@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SettingsListData{
+class ProductsListData{
   String icon;
   String title;
   bool isSelected;
   Widget? nav;
 
-  SettingsListData({
+  ProductsListData({
     required this.icon,
     required this.title,
     required this.isSelected,

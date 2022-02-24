@@ -1,16 +1,25 @@
 import 'dart:ui';
 
-import 'package:bank_of_america_ui/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/app_bar/custom_app_bar.dart';
-import '../widgets/background/background_widget.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
+import '../../widgets/background/background_widget.dart';
+import '../dashboard/dashboard.dart';
+import '../drawer/drawer.dart';
 
-class BranchesScreen extends StatelessWidget {
-  const BranchesScreen({Key? key}) : super(key: key);
+class ContactScreen extends StatefulWidget {
+  const ContactScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
+  bool tapped = false;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -32,15 +41,25 @@ class BranchesScreen extends StatelessWidget {
             ],
           ),
         ),
-        title: "wallet",
-        onTap: () {},
+        title: "Contact Us",
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
       body: BackgroundWidget(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: SafeArea(
-            child: Center(
-              child: Text("Branch Screen"),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                tapped ? DrawerScreen(size: size) : Container(),
+                Center(
+                  child: Text("Contacts Screen"),
+                ),
+              ],
             ),
           ),
         ),

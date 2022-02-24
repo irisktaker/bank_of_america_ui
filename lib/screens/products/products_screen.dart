@@ -2,20 +2,20 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../widgets/app_bar/custom_logo_app_bar.dart';
+import '../../widgets/app_bar/custom_logo_app_bar.dart';
 import '/widgets/button/custom_main_btn.dart';
 import '/singleton/singleton.dart';
 import '/widgets/background/background_widget.dart';
-import 'dashboard/dashboard.dart';
+import '../dashboard/dashboard.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+class ProductsScreen extends StatefulWidget {
+  const ProductsScreen({Key? key}) : super(key: key);
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<ProductsScreen> createState() => _ProductsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -97,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ))
+                                ),),
                           ],
                         ),
                       ),

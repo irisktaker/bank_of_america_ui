@@ -1,14 +1,15 @@
-import 'package:bank_of_america_ui/screens/branches_screen.dart';
-import 'package:bank_of_america_ui/screens/constacts_screen.dart';
+import 'package:bank_of_america_ui/screens/branches/branches_screen.dart';
+import 'package:bank_of_america_ui/screens/contact_us/contact_screen.dart';
 import 'package:bank_of_america_ui/screens/dashboard/dashboard.dart';
-import 'package:bank_of_america_ui/screens/funds_transfer_screen.dart';
-import 'package:bank_of_america_ui/screens/messages_screen.dart';
-import 'package:bank_of_america_ui/screens/settings_screen.dart';
+import 'package:bank_of_america_ui/screens/funds_transfer/funds_transfer_screen.dart';
+import 'package:bank_of_america_ui/screens/messages/messages_screen.dart';
+import 'package:bank_of_america_ui/screens/products/products_screen.dart';
+import 'package:bank_of_america_ui/screens/settings/settings_screen.dart';
 import 'package:bank_of_america_ui/screens/utility_bills/utility_bills_screen.dart';
 import 'package:bank_of_america_ui/screens/wallet/wallet_toggle_screens.dart';
 import 'package:flutter/material.dart';
 
-import '../models/settings_list_data.dart';
+import '../models/products_list_data.dart';
 import '/models/drawer_list.dart';
 import '/models/view_transactions.dart';
 import '/models/saving_history_of_transactions_data.dart';
@@ -182,6 +183,13 @@ class Singleton {
       nav: const FundsTransferScreen(),
     ),
     DrawerList(
+      icon: "assets/icons/wallet2.png",
+      text: "Products",
+      bgColor: Colors.transparent,
+      isSelected: false,
+      nav: const ProductsScreen(),
+    ),
+    DrawerList(
       icon: "assets/icons/branches.png",
       text: "branches",
       bgColor: Colors.transparent,
@@ -200,48 +208,48 @@ class Singleton {
       text: "contact",
       bgColor: Colors.transparent,
       isSelected: false,
-      nav: const ContactsScreen(),
+      nav: const ContactScreen(),
     ),
   ];
 
-  List<SettingsListData> settingsList = [
-    SettingsListData(
+  List<ProductsListData> settingsList = [
+    ProductsListData(
       icon: "assets/icons/chechings.png",
       title: "checkings and loans",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/credit_card.png",
       title: "credit cards",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/home_loans.png",
       title: "home loans",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/auto_loans.png",
       title: "auto loans",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/small_b.png",
       title: "small business",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/investments.png",
       title: "investment",
       isSelected: false,
       nav: null,
     ),
-    SettingsListData(
+    ProductsListData(
       icon: "assets/icons/home_loans.png",
       title: "home loans",
       isSelected: false,

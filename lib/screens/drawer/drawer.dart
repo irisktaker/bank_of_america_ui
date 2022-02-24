@@ -110,7 +110,7 @@ class _DrawerScreenState extends State<DrawerScreen>
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemExtent: 65,
+                      itemExtent: 57,
                       itemCount: Singleton.instance.drawerList.length,
                       itemBuilder: (context, index) => InkWell(
                         onTap: () {
@@ -234,12 +234,13 @@ class _DrawerScreenState extends State<DrawerScreen>
             Image.asset(
               icon,
               color: iconColor,
+              scale: 0.94,
             ),
             const SizedBox(width: 16),
             Text(
               txt,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: txtColor,
               ),

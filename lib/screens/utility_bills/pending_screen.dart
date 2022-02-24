@@ -1,6 +1,7 @@
-import 'package:bank_of_america_ui/widgets/button/custom_main_btn.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/button/custom_main_btn.dart';
 
 class PendingScreen extends StatefulWidget {
   const PendingScreen({Key? key}) : super(key: key);

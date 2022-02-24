@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../widgets/app_bar/custom_app_bar.dart';
-import '../widgets/background/background_widget.dart';
-import 'dashboard/dashboard.dart';
-import 'drawer/drawer.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
+import '../../widgets/background/background_widget.dart';
+import '../dashboard/dashboard.dart';
+import '../drawer/drawer.dart';
 
 class FundsTransferScreen extends StatefulWidget {
   const FundsTransferScreen({Key? key}) : super(key: key);
@@ -25,7 +25,10 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
         leading: InkWell(
-          onTap: (() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()))),
+          onTap: (() => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DashBoardScreen()))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
@@ -56,7 +59,7 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                tapped ? DrawerScreen(size: size) : Container(), 
+                tapped ? DrawerScreen(size: size) : Container(),
                 
               ],
             ),

@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:bank_of_america_ui/screens/dashboard/messages_section.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/app_bar/custom_app_bar.dart';
-import '../widgets/background/background_widget.dart';
-import 'dashboard/dashboard.dart';
-import 'drawer/drawer.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
+import '../../widgets/background/background_widget.dart';
+import '../dashboard/dashboard.dart';
+import '../drawer/drawer.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import '/screens/messages_screen.dart';
+import '../messages/messages_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/list_tile/custom_list_tile.dart';

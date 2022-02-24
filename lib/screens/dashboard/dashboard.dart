@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/app_bar/custom_app_bar.dart';
 import '../drawer/drawer.dart';
-import '../messages_screen.dart';
+import '../messages/messages_screen.dart';
 import '/widgets/background/background_widget.dart';
 import 'bank_account_section.dart';
 import 'messages_section.dart';
@@ -18,7 +18,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  bool tapped = false;  
+  bool tapped = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               BankAccountSection(size: size),
                               const SizedBox(height: 16),
                               SizedBox(
-                                height: size.height * 0.33,
-                                child: MessagesSection(size: size)),
+                                  height: size.height * 0.32,
+                                  child: MessagesSection(size: size)),
                               btnViewMore(context),
                               const SizedBox(height: 10),
                             ],
@@ -76,7 +76,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       ),
     );
   }
-    Container btnViewMore(BuildContext context) {
+
+  Container btnViewMore(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 32,
       height: 38,

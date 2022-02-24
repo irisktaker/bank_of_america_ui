@@ -1,16 +1,22 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
-import '../widgets/app_bar/custom_app_bar.dart';
-import '../widgets/background/background_widget.dart';
-import 'dashboard/dashboard.dart';
+import '/widgets/app_bar/custom_app_bar.dart';
+import '../dashboard/dashboard.dart';
+import '../drawer/drawer.dart';
 
-class ContactsScreen extends StatelessWidget {
-  const ContactsScreen({Key? key}) : super(key: key);
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool tapped = false;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
@@ -32,18 +38,21 @@ class ContactsScreen extends StatelessWidget {
             ],
           ),
         ),
-        title: "wallet",
-        onTap: () {},
+        title: "Settings",
+        onTap: () {
+          setState(() {
+            tapped = !tapped;
+          });
+        },
       ),
-      body: BackgroundWidget(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-          child: SafeArea(
-            child: Center(
-              child: Text("Contacts Screen"),
-            ),
+      body: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          tapped ? DrawerScreen(size: size) : Container(),
+          Center(
+            child: Text("Settings Screen"),
           ),
-        ),
+        ],
       ),
     );
   }
