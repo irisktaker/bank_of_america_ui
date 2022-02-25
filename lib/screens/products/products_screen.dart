@@ -19,6 +19,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isOdd = false;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -45,7 +46,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ),
         actions: [
-          const SizedBox(width: 60,),
+          const SizedBox(
+            width: 60,
+          ),
         ],
       ),
       body: BackgroundWidget(
@@ -59,13 +62,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: ListView(
                   children: [
-                    
                     GridView.builder(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: size.width / 2,
-                          mainAxisSpacing: 16.0,
-                          crossAxisSpacing: 16.0,
-                          childAspectRatio: 0.8),
+                        maxCrossAxisExtent: size.width / 2,
+                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16.0,
+                        childAspectRatio:  0.80,
+                      ),
                       itemBuilder: (context, index) {
                         return containerBox(
                           size,
@@ -75,12 +78,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               children: [
                                 const Expanded(child: SizedBox()),
                                 Image.asset(
-                                  Singleton.instance.settingsList[index].icon,
+                                  Singleton.instance.productsList[index].icon,
                                   scale: 0.8,
                                 ),
                                 const Expanded(child: SizedBox()),
                                 Text(
-                                  Singleton.instance.settingsList[index].title
+                                  Singleton.instance.productsList[index].title
                                       .toUpperCase(),
                                   style: const TextStyle(
                                     fontSize: 11,
@@ -89,24 +92,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 ),
                                 const Expanded(child: SizedBox()),
                                 CustomMainBtn(
-                                    onTap: () {},
-                                    height: 38,
-                                    widget: const Center(
-                                      child: Text(
-                                        "Details",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                  onTap: () {},
+                                  height: 38,
+                                  widget: const Center(
+                                    child: Text(
+                                      "Details",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ),),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         );
                       },
-                      itemCount: Singleton.instance.settingsList.length,
+                      itemCount: Singleton.instance.productsList.length,
                       shrinkWrap: true,
                     ),
                   ],

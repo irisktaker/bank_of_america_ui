@@ -212,7 +212,7 @@ class Singleton {
     ),
   ];
 
-  List<ProductsListData> settingsList = [
+  List<ProductsListData> productsList = [
     ProductsListData(
       icon: "assets/icons/chechings.png",
       title: "checkings and loans",

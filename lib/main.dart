@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
         primarySwatch: Colors.blue,
       ),
-      // home: SplashScreen(),
-      home: const DashBoardScreen(),
+      home: SplashScreen(),
+      // home: const DashBoardScreen(),
       // home: CustomSearchBar(),
     );
   }
