@@ -215,7 +215,7 @@ class Singleton {
   List<ProductsListData> productsList = [
     ProductsListData(
       icon: "assets/icons/chechings.png",
-      title: "checkings and loans",
+      title: "checking and loans",
       isSelected: false,
       nav: null,
     ),

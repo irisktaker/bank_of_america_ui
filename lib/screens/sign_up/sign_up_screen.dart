@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../../widgets/background/background_widget.dart';
-import '../../widgets/app_bar/custom_logo_app_bar.dart';
-import '../../widgets/button/check_box.dart';
-import '../../widgets/button/custom_main_btn.dart';
-import '../../widgets/text_field/text_form_field.dart';
+import '/widgets/background/background_widget.dart';
+import '/widgets/app_bar/custom_logo_app_bar.dart';
+import '/widgets/button/check_box.dart';
+import '/widgets/button/custom_main_btn.dart';
+import '/widgets/text_field/text_form_field.dart';
 import 'sign_up_screen_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -172,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         CustomMainBtn(
                           onTap: () {
                             if (_bloc.formKey.currentState!.validate()) {
-                              _bloc.singWithFingerPrint(context);
+                              // _bloc.singWithFingerPrint(context);
                             }
                           },
                           widget: Row(

@@ -56,7 +56,7 @@ class _ContactScreenState extends State<ContactScreen> {
               scrollDirection: Axis.horizontal,
               children: [
                 tapped ? DrawerScreen(size: size) : Container(),
-                Center(
+                const Center(
                   child: Text("Contacts Screen"),
                 ),
               ],

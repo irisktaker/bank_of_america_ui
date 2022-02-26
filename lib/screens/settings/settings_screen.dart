@@ -1,9 +1,12 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
+
+import '../drawer/drawer.dart';
 import '/widgets/app_bar/custom_app_bar.dart';
 import '../dashboard/dashboard.dart';
-import '../drawer/drawer.dart';
-
+import '/widgets/background/background_widget.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -45,14 +48,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
           });
         },
       ),
-      body: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          tapped ? DrawerScreen(size: size) : Container(),
-          Center(
-            child: Text("Settings Screen"),
+      body: BackgroundWidget(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: SafeArea(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                tapped ? DrawerScreen(size: size) : Container(),
+                const Center(
+                  child: Text("Settings Screen"),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
