@@ -11,29 +11,54 @@ class PendingScreen extends StatefulWidget {
 }
 
 class _PendingScreenState extends State<PendingScreen> {
-  bool isSwitched = false;
+  bool isSwitched1 = false;
+  bool isSwitched2 = false;
+  bool isSwitched3 = false;
+
+  bool btn1Clicked = false;
+  bool btn2Clicked = false;
+  bool btn3Clicked = true;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
+      child: ListView(
         children: [
           containerBox(
             size,
-            height: size.height * 0.18,
+            height: btn1Clicked ? size.height * 0.38 : size.height * 0.18,
             icon: "assets/icons/electricity_bill.png",
             bgIconColor: const Color(0xFF4DBEE0),
             title: "Electricity Bill",
             amount: "\$ \t176.99",
             btnTextColor: Colors.grey,
             btnColor: Colors.white,
+            btnText: btn1Clicked ? "Less Details" : "Details",
+            btnIcon: btn1Clicked
+                ? Icons.keyboard_arrow_up_outlined
+                : Icons.keyboard_arrow_down_outlined,
+            onTap: () {
+              setState(() {
+                btn1Clicked = !btn1Clicked;
+              });
+            },
+            child: btn1Clicked
+                ? moreDetailsOpen(
+                    val: isSwitched1, 
+                    onChanged: (val) {
+                      setState(() {
+                        isSwitched1 = val;
+                      });
+                })
+                : Container(),
           ),
           const SizedBox(height: 10),
           containerBox(
             size,
-            height: size.height * 0.18,
+            height: btn2Clicked ? size.height * 0.38 : size.height * 0.18,
             icon: "assets/icons/water_bill.png",
             bgIconColor: Colors.red[900]!,
             title: "Water Bill",
@@ -41,80 +66,119 @@ class _PendingScreenState extends State<PendingScreen> {
             btnTextColor: Colors.white,
             btnColor: Colors.red[600]!,
             notificationIcon: Icons.error,
+            btnText: btn2Clicked ? "Less Details" : "Details",
+            btnIcon: btn2Clicked
+                ? Icons.keyboard_arrow_up_outlined
+                : Icons.keyboard_arrow_down_outlined,
+            onTap: () {
+              setState(() {
+                btn2Clicked = !btn2Clicked;
+              });
+            },
+            child: btn2Clicked
+                ? moreDetailsOpen(
+                    val: isSwitched2,
+                    onChanged: (val) {
+                      setState(() {
+                        isSwitched2 = val;
+                      });
+                    })
+                : Container(),
           ),
           const SizedBox(height: 10),
           containerBox(
             size,
-            height: size.height * 0.38,
+            height: btn3Clicked ? size.height * 0.38 : size.height * 0.18,
             icon: "assets/icons/tv.png",
             bgIconColor: const Color(0xFF4DBEE0),
             title: "TV Monthly Subscribe",
             amount: "\$ \t29.99",
             btnTextColor: Colors.grey,
             btnColor: Colors.white,
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                monthlySubscriptionsInformation(
-                  title: "Process Date",
-                  child: Text(
-                    "Wed, Nov. 03, 2022",
-                    style: TextStyle(
-                      color: Colors.red[600]!,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                monthlySubscriptionsInformation(
-                  title: "Process Date",
-                  child: Row(
-                    children: [
-                      Text(
-                        "Master Card **** 3456",
-                        style: TextStyle(
-                          color: Colors.grey[600]!,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Container(
-                        width: 38,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              "assets/images/mastercard-26135.png",
-                            ),
-                            alignment: Alignment.topRight,
-                            scale: 40,
-                          ),
-                        ),
-                      ),
-                      const Icon(Icons.arrow_drop_down),
-                    ],
-                  ),
-                ),
-                monthlySubscriptionsInformation(
-                  title: "Autopay",
-                  child: Transform.scale(
-                    scale: 0.8,
-                    child: CupertinoSwitch(
-                      value: isSwitched,
-                      onChanged: (value) {
-                        setState(() {
-                          isSwitched = value;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            btnText: btn3Clicked ? "Less Details" : "Details",
+            btnIcon: btn3Clicked
+                ? Icons.keyboard_arrow_up_outlined
+                : Icons.keyboard_arrow_down_outlined,
+            onTap: () {
+              setState(() {
+                btn3Clicked = !btn3Clicked;
+              });
+            },
+            child: btn3Clicked
+                ? moreDetailsOpen(
+                    val: isSwitched3,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitched3 = value;
+                      });
+                    },
+                  )
+                : Container(),
           ),
         ],
       ),
+    );
+  }
+
+  Column moreDetailsOpen({
+    required bool val,
+    required void Function(bool)? onChanged,
+  }) {
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        monthlySubscriptionsInformation(
+          title: "Process Date",
+          child: Text(
+            "Wed, Nov. 03, 2022",
+            style: TextStyle(
+              color: Colors.red[600]!,
+              fontSize: 12,
+            ),
+          ),
+        ),
+        monthlySubscriptionsInformation(
+          title: "Process Date",
+          child: Row(
+            children: [
+              Text(
+                "Master Card **** 3456",
+                style: TextStyle(
+                  color: Colors.grey[600]!,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Container(
+                width: 38,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  image: const DecorationImage(
+                    image: AssetImage(
+                      "assets/images/mastercard-26135.png",
+                    ),
+                    alignment: Alignment.topRight,
+                    scale: 40,
+                  ),
+                ),
+              ),
+              const Icon(Icons.arrow_drop_down),
+            ],
+          ),
+        ),
+        monthlySubscriptionsInformation(
+          title: "Autopay",
+          child: Transform.scale(
+            scale: 0.8,
+            child: CupertinoSwitch(
+              value: val,
+              onChanged: onChanged,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -148,6 +212,9 @@ class _PendingScreenState extends State<PendingScreen> {
     Widget? child,
     required double height,
     IconData? notificationIcon,
+    required String btnText,
+    required IconData btnIcon,
+    required void Function()? onTap,
   }) {
     return Container(
       width: size.width,
@@ -234,27 +301,36 @@ class _PendingScreenState extends State<PendingScreen> {
           ),
           Expanded(child: Container()),
           CustomMainBtn(
-            onTap: () {},
+            onTap: onTap,
             widget: Row(
               children: [
-                const Spacer(flex: 5),
-                const Text(
-                  "Details",
-                  style: TextStyle(
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: const EdgeInsets.only(left: 10),
+                ),
+                const Spacer(),
+                Text(
+                  btnText,
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 12),
-                const Icon(
-                  Icons.keyboard_arrow_down_outlined,
+                Icon(
+                  btnIcon,
                   color: Colors.white,
                 ),
-                const Spacer(flex: 3),
-                Icon(
-                  notificationIcon,
-                  color: Colors.red[700],
+                const Spacer(),
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: const EdgeInsets.only(right: 10),
+                  child: Icon(
+                    notificationIcon,
+                    color: Colors.red[700],
+                  ),
                 ),
-                const SizedBox(width: 10)
               ],
             ),
           ),

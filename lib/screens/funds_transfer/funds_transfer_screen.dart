@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -15,62 +14,26 @@ class FundsTransferScreen extends StatefulWidget {
   State<FundsTransferScreen> createState() => _FundsTransferScreenState();
 }
 
-class SandShapePainter extends CustomPaint {
-  Path getSandShapePath(double shapeSize, double fromRadius, double toRadius) {
-    return Path()
-      ..moveTo(shapeSize, shapeSize)
-      ..arcTo(
-          Rect.fromCircle(
-              center: Offset(shapeSize, shapeSize), radius: shapeSize),
-          fromRadius,
-          toRadius,
-          false)
-      ..close();
-  }
-
-  Paint getColoredPaint(Color color) {
-    Paint paint = Paint();
-    paint.color = color;
-    return paint;
-  }
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    double shapeSize = 100;
-    double nbElem = 6;
-    double radius = (2 * pi) / nbElem;
-
-    canvas.drawPath(
-        getSandShapePath(shapeSize, 0, radius), getColoredPaint(Colors.red));
-    canvas.drawPath(getSandShapePath(shapeSize, radius, radius),
-        getColoredPaint(Colors.purple));
-    canvas.drawPath(getSandShapePath(shapeSize, radius * 2, radius),
-        getColoredPaint(Colors.blue));
-    canvas.drawPath(getSandShapePath(shapeSize, radius * 3, radius),
-        getColoredPaint(Colors.green));
-    canvas.drawPath(getSandShapePath(shapeSize, radius * 4, radius),
-        getColoredPaint(Colors.yellow));
-    canvas.drawPath(getSandShapePath(shapeSize, radius * 5, radius),
-        getColoredPaint(Colors.orange));
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return oldDelegate != this;
-  }
-}
-
 class _FundsTransferScreenState extends State<FundsTransferScreen> {
   bool tapped = false;
   bool shadow = false;
   double amount = 15000;
+  String dropDownCardValue = "Credit Card **56";
+
+  List<String> cardsList = [
+    "Credit Card **56",
+    "Credit Card **89",
+    "Credit Card **15",
+    "Debit Card **71",
+    "Repaid Card **43",
+    "Credit Card **92",
+  ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      bottomSheet: SandShapePainter(),
       extendBodyBehindAppBar: true,
       appBar: customAppBar(
         leading: InkWell(
@@ -116,136 +79,168 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: ListView(
                       children: [
-                        Stack(
-                          children: [
-                            detailsContainerBox(
-                              size,
-                              profileImage: "assets/images/profile.png",
-                              transfer: "SENDER",
-                              fullName: "Johnes Patric Doel",
-                              countryFlag: "assets/images/a_flag.png",
-                              currency: "USD",
-                              widget: customBTN(
-                                widget1: Image.asset(
-                                  "assets/images/mc_symbol_opt_63_1x.png",
-                                  height: 30,
-                                ),
-                                text: "Credit Card **56",
-                                widget2: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                      Icons.keyboard_arrow_down_outlined),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              right: 10,
-                              top: size.height * 0.10,
-                              child: Container(
-                                width: 18,
-                                height: 18,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.red,
-                                ),
-                                child: const Icon(
-                                  Icons.check,
-                                  size: 13,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          width: size.width - 32,
-                          // height: size.height * 0.20,
-                          margin: const EdgeInsets.only(left: 17),
-                          child: Row(
+                        SizedBox(
+                          height: size.height * 0.40,
+                          child: Stack(
                             children: [
-                              Container(
-                                width: size.width * 0.31,
-                                height: size.height * 0.18,
-                                padding: const EdgeInsets.all(6),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: CircleAvatar(
-                                  backgroundColor: const Color(0xFF4cbee0),
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    radius: 50,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Text(
-                                          "Amount",
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$ ${amount.toStringAsFixed(2)}",
-                                          style: const TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: size.height * 0.18,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
+                              Positioned(
+                                top: size.height * 0.125,
+                                child: Container(
+                                  width: size.width - 32,
+                                  margin: const EdgeInsets.only(left: 17),
+                                  child: Row(
                                     children: [
-                                      Padding(
+                                      Container(
+                                        width: 100,
+                                        height: 210,
+                                        margin:
+                                            const EdgeInsets.only(bottom: 16),
                                         padding:
-                                            const EdgeInsets.only(right: 36),
+                                            const EdgeInsets.only(bottom: 28),
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                              "assets/images/des.png",
+                                            ),
+                                          ),
+                                        ),
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             const Text(
-                                              "Money Limit",
+                                              "Amount",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
                                               ),
                                             ),
-                                            const SizedBox(height: 10),
                                             Text(
                                               "\$ ${amount.toStringAsFixed(2)}",
                                               style: const TextStyle(
+                                                color: Colors.red,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.grey,
-                                                fontSize: 16,
-                                                letterSpacing: 1.1,
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Slider(
-                                        value: amount,
-                                        onChanged: (value) {
-                                          setState(() {});
-                                          amount = value;
-                                        },
-                                        min: 0,
-                                        max: 50000,
-                                        activeColor: const Color(0xFF4DBEE0),
-                                        inactiveColor: Colors.grey,
-                                        thumbColor: Colors.white,
-                                      )
+                                      Expanded(
+                                        child: SizedBox(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  right: 36,
+                                                  top: 40,
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    const Text(
+                                                      "Money Limit",
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 16,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 10),
+                                                    Text(
+                                                      "\$ ${amount.toStringAsFixed(2)}",
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.grey,
+                                                        fontSize: 16,
+                                                        letterSpacing: 1.1,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Slider(
+                                                value: amount,
+                                                onChanged: (value) {
+                                                  setState(() {});
+                                                  amount = value;
+                                                },
+                                                min: 0,
+                                                max: 50000,
+                                                activeColor:
+                                                    const Color(0xFF4DBEE0),
+                                                inactiveColor: Colors.grey,
+                                                thumbColor: Colors.white,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ],
+                                  ),
+                                ),
+                              ),
+                              detailsContainerBox(
+                                size,
+                                profileImage: "assets/images/profile.png",
+                                transfer: "SENDER",
+                                fullName: "Johnes Patric Doel",
+                                countryFlag: "assets/images/a_flag.png",
+                                currency: "USD",
+                                widget: customBTN(
+                                  widget1: Image.asset(
+                                    "assets/images/mc_symbol_opt_63_1x.png",
+                                    height: 30,
+                                  ),
+                                  text: "",
+                                  widget2: DropdownButton(
+                                    value: dropDownCardValue,
+                                    items: cardsList
+                                        .map(
+                                          (String cardsList) =>
+                                              DropdownMenuItem(
+                                            child: Text(cardsList),
+                                            value: cardsList,
+                                          ),
+                                        )
+                                        .toList(),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        dropDownCardValue = newValue!;
+                                      });
+                                    },
+                                    alignment: Alignment.centerLeft,
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    underline: Container(),
+
+
+
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                right: 10,
+                                top: size.height * 0.10,
+                                child: Container(
+                                  width: 18,
+                                  height: 18,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.red,
+                                  ),
+                                  child: const Icon(
+                                    Icons.check,
+                                    size: 13,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -479,88 +474,29 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             child: widget1,
           ),
           const SizedBox(width: 6),
-          Text(
-            text,
-            style: TextStyle(
-              color: btnTextColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(width: 6),
-          Container(
-            child: widget2,
+          Row(
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                  color: btnTextColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(width: 6),
+              Container(
+                child: widget2,
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-                        // Stack(
-                        //   children: [
-                        //     Positioned(
-                        //       child: Container(
-                        //         height: size.height * 0.12,
-                        //         color: Colors.transparent,
-                        //       ),
-                        //     ),
-                        //     Positioned(
-                        //       left: 40,
-                        //       child: Container(
-                        //         width: 70,
-                        //         height: size.height * 0.12,
-                        //         color: Colors.white,
-                        //       ),
-                        //     ),
-                        //     Positioned(
-                        //       left: 0,
-                        //       child: Container(
-                        //         width: 72,
-                        //         height: size.height * 0.12,
-                        //         decoration: const BoxDecoration(
-                        //           borderRadius: BorderRadius.only(
-                        //             topRight: Radius.circular(40),
-                        //             bottomRight: Radius.circular(40),
-                        //           ),
-                        //           // color: Color(0xFF4DBEE0),
-                        //           gradient: LinearGradient(colors: [
-                        //             Color.fromARGB(255, 208, 227, 233),
-                        //             Color(0xFF34aed5),
-                        //           ],
-                        //           begin: Alignment.topRight,
-                        //           end: Alignment.bottomLeft,
-                        //           ),
-                        //           // shape: BoxShape.circle,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     Positioned(
-                        //       left: 78,
-                        //       child: Container(
-                        //         width: 80,
-                        //         height: size.height * 0.12,
-                        //         decoration: const BoxDecoration(
-                        //           borderRadius: BorderRadius.only(
-                        //             topLeft: Radius.circular(40),
-                        //             bottomLeft: Radius.circular(40),
-                        //           ),
-                        //           color: Colors.red,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),

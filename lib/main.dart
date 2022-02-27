@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'screens/splash/splash_screen.dart';
-import 'widgets/search/custom_search_bar.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -28,7 +27,6 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       // home: const DashBoardScreen(),
-      // home: CustomSearchBar(),
     );
   }
 }
