@@ -5,3 +5,12 @@ List<Color> bgColor = [
   const Color(0xFF4DBEE0),
   const Color(0xFFFFFFFF),
 ];
+
+
+// titleColor
+// subtitleColor
+// descriptionColor
+// primaryPadding
+// blueTitleColor
+// textBtnColor
+// 

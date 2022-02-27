@@ -91,6 +91,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       Text(
                         Singleton
                             .instance.creditHistoryTransaction[index].brandName,
+                            overflow: TextOverflow.ellipsis,
                       ),
                       const Spacer(flex: 2),
                       Text(Singleton.instance.creditHistoryTransaction[index]

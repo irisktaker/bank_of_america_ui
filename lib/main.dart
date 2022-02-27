@@ -1,4 +1,4 @@
-import '/screens/dashboard/dashboard.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SplashScreen(),
-      // home: const DashBoardScreen(),
     );
   }
 }

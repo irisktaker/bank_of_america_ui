@@ -1,7 +1,8 @@
-import '../messages/messages_screen.dart';
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
-import '../../widgets/list_tile/custom_list_tile.dart';
+import '/widgets/list_tile/custom_list_tile.dart';
 
 class MessagesSection extends StatelessWidget {
   

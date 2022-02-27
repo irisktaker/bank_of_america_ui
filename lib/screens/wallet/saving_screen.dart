@@ -75,7 +75,6 @@ class _SavingScreenState extends State<SavingScreen> {
           slider: Container(),
         ),
         HistoryOfTransactionCard(
-          // widget.index !!!
           titleLogo: "assets/icons/three-o-clock-clock.png",
           title: "History of Transactions",
           child: ListView.builder(
@@ -88,10 +87,14 @@ class _SavingScreenState extends State<SavingScreen> {
                     children: [
                       Text(Singleton
                           .instance.savingHistoryTransaction[index].date),
-                      const Spacer(),
-                      Text(
-                        Singleton
-                            .instance.savingHistoryTransaction[index].brandName,
+                      const SizedBox(width: 6),
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          Singleton
+                              .instance.savingHistoryTransaction[index].brandName,
+                               overflow: TextOverflow.ellipsis,
+                         ),
                       ),
                       const Spacer(flex: 2),
                       Text(Singleton.instance.savingHistoryTransaction[index]

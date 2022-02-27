@@ -65,7 +65,7 @@ class Singleton {
     ),
     SavingHistoryOfTransactionsData(
       date: "26 Sep. 21",
-      brandName: "Car Payment",
+      brandName: "Car Payment  sdfs dfs dfsf",
       amountValue: 499.99,
       performance: "assets/icons/down-arrow.png",
     ),
