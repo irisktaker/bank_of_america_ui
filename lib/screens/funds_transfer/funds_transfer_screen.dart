@@ -90,6 +90,8 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
                                   margin: const EdgeInsets.only(left: 17),
                                   child: Row(
                                     children: [
+
+                                      // using image 
                                       Container(
                                         width: 100,
                                         height: 210,
@@ -126,6 +128,21 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
                                           ],
                                         ),
                                       ),
+
+                                      //
+                                      // Arc paint decoration
+                                      //
+                                      // Container(
+                                      //   color: Colors.transparent,
+                                      //   margin: const EdgeInsets.only(left: 10),
+                                      //   width: 55,
+                                      //   height: 200,
+                                      //   child: CustomPaint(
+                                      //     painter: ArcPainter(),
+                                      //   ),
+                                      // ),
+
+                                      
                                       Expanded(
                                         child: SizedBox(
                                           child: Column(
@@ -185,6 +202,23 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
                                   ),
                                 ),
                               ),
+                              
+                              
+                              // just circle 
+                              // Positioned(
+                              //   top: size.height * 0.28,
+                              //   left: 13,
+                              //   child: Container(
+                              //     width: 85,
+                              //     height: 85,
+                              //     decoration: const BoxDecoration(
+                              //       color: Colors.white,
+                              //       shape: BoxShape.circle,
+                              //     ),
+                              //   ),
+                              // ),
+
+
                               detailsContainerBox(
                                 size,
                                 profileImage: "assets/images/profile.png",
@@ -221,9 +255,6 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                     underline: Container(),
-
-
-
                                   ),
                                 ),
                               ),
@@ -498,5 +529,48 @@ class _FundsTransferScreenState extends State<FundsTransferScreen> {
         ],
       ),
     );
+  }
+}
+
+class ArcPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 12.9
+      ..style = PaintingStyle.stroke;
+
+    final arc1 = Path();
+    arc1.moveTo(size.width * 0.2, size.height * 0.8);
+    arc1.arcToPoint(
+      Offset(size.width * 0.2, size.height * 0.2),
+      radius: const Radius.circular(120),
+      clockwise: false,
+    );
+
+    canvas.drawPath(arc1, paint);
+
+    final arc2 = Path();
+    arc2.moveTo(size.width * 0.8, size.height * 0.2);
+    arc2.arcToPoint(
+      Offset(size.width * 0.8, size.height * 0.8),
+      radius: const Radius.circular(120),
+      clockwise: false,
+    );
+
+    canvas.drawPath(arc2, paint);
+
+    final arc3 = Path();
+    arc3.moveTo(size.width * 0.5, size.height * 0.8);
+    arc3.arcToPoint(
+      Offset(size.width * 0.5, size.height * 0.2),
+    );
+
+    canvas.drawPath(arc3, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
