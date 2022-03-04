@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
+import 'package:local_auth/local_auth.dart';
 import '/widgets/background/background_widget.dart';
 import '/widgets/app_bar/custom_logo_app_bar.dart';
 import '/widgets/button/check_box.dart';
@@ -17,12 +18,35 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final LoginScreenBloc _bloc = LoginScreenBloc();
+
+  // final LocalAuthentication localAuth = LocalAuthentication();
+
+  // Future<void> _authorize() async {
+  //   bool _isAuthorized = false;
+  //   try {
+  //     _isAuthorized = await localAuth.authenticateWithBiometrics(
+  //       localizedReason: 'Please authenticate to Complete this process',
+  //       useErrorDialogs: true,
+  //       stickyAuth: true,
+  //     );
+  //   } on PlatformException catch (e) {
+  //     print(e);
+  //   }
+
+  //   if (!mounted) return;
+  //   setState(() {
+  //     if (_isAuthorized) {
+  //       _authorizeText = "Authorized Successfully!";
+  //     } else {
+  //       _authorizeText = "Not Authorized!";
+  //     }
+  //   });
+  // }
 
   @override
   void initState() {
-   _bloc.getBankIdFromSecureStorage();
+    _bloc.getBankIdFromSecureStorage();
     super.initState();
   }
 
@@ -152,12 +176,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 16),
                         CustomMainBtn(
                           onTap: () async {
-                            
-                            if (_bloc.formKey.currentState!.validate()) {                           
-                              await _bloc.rememberMyIdForFutureLogin(context);
-                              // _bloc.singWithFingerPrint(context);
-                            }
+                            // _authorize();
 
+                            if (_bloc.formKey.currentState!.validate()) {
+                              await _bloc.rememberMyIdForFutureLogin(context);
+                            }
                           },
                           widget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

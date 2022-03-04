@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bank_of_america_ui">
+   
+   <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+   
    <application
         android:label="bank_of_america_ui"
         android:name="${applicationName}"

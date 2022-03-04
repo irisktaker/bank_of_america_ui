@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'screens/splash/splash_screen.dart';
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -10,6 +9,7 @@ void main() {
       statusBarColor: Colors.transparent,
     ),
   );
+
   runApp(const MyApp());
 }
 

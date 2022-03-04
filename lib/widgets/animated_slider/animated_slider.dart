@@ -27,7 +27,7 @@ AnimatedContainer slider(
         color: Colors.grey.shade300,
         image: DecorationImage(
             image: AssetImage(
-             image,
+              image,
             ),
             fit: BoxFit.fitWidth),
       ),
@@ -45,7 +45,7 @@ AnimatedContainer slider(
             ),
             const Spacer(flex: 2),
             Text(
-             cardNumber,
+              cardNumber,
               style: TextStyle(
                 letterSpacing: 1.2,
                 fontSize: 18,
